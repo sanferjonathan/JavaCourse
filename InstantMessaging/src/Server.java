@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Server extends JFrame{ //"127.0.0.1" "localhost"
+public class Server extends JFrame{
 	
 	private JTextField userText;
 	private JTextArea chatWindow;
