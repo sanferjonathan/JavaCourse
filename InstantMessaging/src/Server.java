@@ -106,9 +106,9 @@ public class Server extends JFrame{ //"127.0.0.1" "localhost"
 	//send a message to client
 	private void sendMessage(String message) {
 		try {
-			output.writeObject("Server - " + message);
+			output.writeObject("SERVER - " + message);
 			output.flush();
-			showMessage("\n Server - " + message);
+			showMessage("\n SERVER - " + message);
 		}
 		catch(IOException ioException) {
 			chatWindow.append("\n Error: can't send that message!");
