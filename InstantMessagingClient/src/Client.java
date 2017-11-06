@@ -12,12 +12,11 @@ public class Client extends JFrame{
 	private String message = "";
 	private String serverIP;
 	private Socket connection;
-	//private InetAddress me; //InetAddress.getLocalHost();
 	
 	//constructor
 	public Client(String host) {
 		super("Client construct!");
-		serverIP = "192.168.1.87";
+		serverIP = host;
 		userText = new JTextField();
 		userText.setEditable(false);
 		userText.addActionListener(
