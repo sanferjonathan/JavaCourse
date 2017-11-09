@@ -28,11 +28,9 @@ public class Circle extends GeometricObject {
 	public int diameter() {
 		return this.radius + this.radius;
 	}
-	
-	public int compare(int x) {
-		int avstand;
-		avstand = Math.abs(this.xCenter) - Math.abs(x);
-		return avstand;
-	}
 
+	@Override
+	public double distanceToPoint(int x, int y) {
+		return Math.sqrt(Math.pow(x - this.xCenter, 2) + Math.pow(y - this.yCenter, 2));
+	}
 }

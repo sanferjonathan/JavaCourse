@@ -1,4 +1,4 @@
 
 public interface Comparable {
-	public abstract int compare(int x);
+	public abstract double distanceToPoint(int x, int y);
 }
