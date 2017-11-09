@@ -22,10 +22,10 @@ public class Pearson {
 	protected class Fact {
 		String contents;
 		String date;
-		
+		FactStatus factStatus; 
 	}
 	
-	public enum factStatus {
+	public enum FactStatus {
 		newKnowledge,
 		passiveKnowledge,
 		forgottenKnowledge;
