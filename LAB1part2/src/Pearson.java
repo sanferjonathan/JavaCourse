@@ -1,29 +1,27 @@
 import java.util.List;
-import java.util.Scanner;
 import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 
 public class Pearson {
 	
-	private String name;
-	private String surname;
-	private String personalNumber;
-	private int numberOffacts;
-	private List<Fact> list;
+	private final String name;
+	private final String surname;
+	private final String personalNumber;
+	private int numberOfFacts;
+	private List<Fact> list = new ArrayList<Fact>();
 	
-	private void Person(String name, String surname, String personNumber) {
+	public Pearson(String name, String surname, String personNumber, String... contents) {
 		this.name = name;
 		this.surname = surname;
 		this.personalNumber = personNumber;
-		this.numberOffacts = 0;
+		this.numberOfFacts = 0;
 		
-		System.out.println("Select the number of facts this person is born with!");
-		Scanner scanner = new Scanner(System.in);
-		
-		System.out.println("Give the contents and date of each fact!");
-		for (int i = scanner.nextInt(); i > 0; i--) {
-			addFact(new Fact(scanner.nextLine(), scanner.nextLine()));
+		for (String word : contents) {
+			learnFact(word);
 		}
-		scanner.close();
 	}
 	
 	public enum FactStatus {
@@ -34,67 +32,127 @@ public class Pearson {
 	 
 	protected class Fact {
 		int counter;
-		String contents;
+		final String contents;
 		String date;
 		FactStatus factStatus;
 		
-		public Fact(String contents, String date) {
+		public Fact(String contents) {
 			this.factStatus = FactStatus.accessible;
 			this.counter = 0;
 			this.contents = contents;
-			this.date = date;
+			this.date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
 		}
 		
 		public void update() {
-			counter++;
-			if(counter > 3 && this.factStatus == FactStatus.accessible) {
+			if(counter > 1 && this.factStatus == FactStatus.accessible) {
 				this.factStatus = FactStatus.passive;
 			}
-			if(counter > 6 && this.factStatus == FactStatus.passive) {
+			if(counter > 2 && this.factStatus == FactStatus.passive) {
 				this.factStatus = FactStatus.forgotten;
 			}
-			if(counter > 10 && this.factStatus == FactStatus.forgotten) {
-				removeFact(this);
-			}
+			this.counter++;
 		}
 	}
 	
-	public void addFact(Fact fact) {  
-		 if(this.numberOffacts < 100) {
-			 this.list.add(fact);
-			 this.numberOffacts++;
+	protected boolean learnFact(String contents) {  
+		 if(this.numberOfFacts < 100) {
+			 this.list.add(new Fact(contents));
+			 this.numberOfFacts++;
+			 return true;
 		 }
 		 else {
-			 System.out.printf("%s %s can't learn anything more!", this.name, this.surname);
+			 System.out.printf("%s %s can't learn anything more! ", this.name, this.surname);
+			 return false;
 		 }
-	}
-	
-	public void removeFact(Fact fact) {
-		if(this.numberOffacts > 0) {
-			this.list.remove(fact);
-			this.numberOffacts--;
-		}
-		else {
-			System.out.printf("%s %s does not know anything!", this.name, this.surname);
-		}
 	}
 	
 	public boolean knowsFact(String contents) {
-		for(Fact obj : list) {
+		for(Fact obj : this.list) {
 			if(obj.contents.equals(contents)) {
-				System.out.printf("%s", obj.factStatus);
+				System.out.printf("%s\n", obj.factStatus);
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	public String personNumber() {
-		return this.personalNumber;
-	}
+
 	
 	public String speak() {
-		Random rand = new Random();
-		return list.get(rand.nextInt(this.numberOffacts)).contents;
+		return this.list.get(new Random().nextInt(this.numberOfFacts)).contents;
+	}
+	
+	protected boolean listenTo(Pearson p, String msg) {
+		if(p.knowsFact(msg) == true) {
+			if(this.knowsFact(msg)) {
+				this.updateFact(msg);
+				return true;
+			}
+			else {
+				this.learnFact(msg);
+				return true;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean updateFact(String msg) {
+		for(Fact obj : this.list) {
+			if(obj.contents.equals(msg)) {
+				obj.date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
+				obj.factStatus = FactStatus.accessible;
+				obj.counter = 0;
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void updateFactList() {
+		if (this.list.isEmpty()) {
+			System.out.println("List empty!");
+		}	
+		else {
+			Iterator<Fact> it = this.list.iterator();
+			while (it.hasNext()) {
+				Fact fact = it.next();
+				fact.update();
+			}
+			forgetFact();
+		}
+	}
+	
+	protected void forgetFact() {
+		Iterator<Fact> it = this.list.iterator();
+		if(this.numberOfFacts > 0) {
+			while (it.hasNext()) {
+				if(it.next().counter > 4) {
+					it.remove();
+					System.out.println("Object deleted!");
+					this.numberOfFacts--;
+				}
+			}
+		}
+		else {
+			System.out.printf("%s %s does not know anything! ", this.name, this.surname);
+		}
+	}
+	
+	public int getNumberOfFacts() {
+		return this.numberOfFacts;
+	}
+	public String getPersonNumber() {
+		return this.personalNumber;
+	}
+	public String getName() {
+		return this.name;
+	}
+	public String getSurname() {
+		return this.surname;
+	}
+	public List<Fact> getList(){
+		return this.list;
 	}
 }
