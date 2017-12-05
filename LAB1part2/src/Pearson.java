@@ -1,29 +1,45 @@
+
 import java.util.List;
 import java.util.Random;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
-public class Pearson {
+public abstract class Pearson {
 	
-	private final String name;
-	private final String surname;
-	private final String personalNumber;
-	private int numberOfFacts;
-	private List<Fact> list = new ArrayList<Fact>();
+	protected Integer numberOfFacts;
+	protected final String name;
+	protected final String surname;
+	protected final Integer personalNumber;
+	protected final List<Fact> list = new ArrayList<Fact>();
 	
-	public Pearson(String name, String surname, String personNumber, String... contents) {
+	public Pearson(String name, String surname, Integer personalNumber, String... contents) {
 		this.name = name;
 		this.surname = surname;
-		this.personalNumber = personNumber;
+		this.personalNumber = personalNumber;
 		this.numberOfFacts = 0;
 		
 		for (String word : contents) {
-			learnFact(word);
+			learn(word);
 		}
 	}
 	
+	protected abstract boolean listen(Pearson p, String msg);
+	protected abstract boolean learn(String contents);
+	public abstract void register(Student student);
+	public abstract void teach(String contents);
+	protected abstract class Learn {
+		Fact fact;
+		List<Fact> list;
+		public Learn(Fact fact, List<Fact> list) {
+			this.fact = fact;
+			this.list = list;
+		}
+		protected abstract boolean learn(Fact fact);
+	}
+
 	public enum FactStatus {
 		accessible,
 		passive,
@@ -31,7 +47,7 @@ public class Pearson {
 	}
 	 
 	protected class Fact {
-		int counter;
+		Integer counter;
 		final String contents;
 		String date;
 		FactStatus factStatus;
@@ -54,18 +70,6 @@ public class Pearson {
 		}
 	}
 	
-	protected boolean learnFact(String contents) {  
-		 if(this.numberOfFacts < 100) {
-			 this.list.add(new Fact(contents));
-			 this.numberOfFacts++;
-			 return true;
-		 }
-		 else {
-			 System.out.printf("%s %s can't learn anything more! ", this.name, this.surname);
-			 return false;
-		 }
-	}
-	
 	public boolean knowsFact(String contents) {
 		for(Fact obj : this.list) {
 			if(obj.contents.equals(contents)) {
@@ -75,27 +79,9 @@ public class Pearson {
 		}
 		return false;
 	}
-	
 
-	
 	public String speak() {
 		return this.list.get(new Random().nextInt(this.numberOfFacts)).contents;
-	}
-	
-	protected boolean listenTo(Pearson p, String msg) {
-		if(p.knowsFact(msg) == true) {
-			if(this.knowsFact(msg)) {
-				this.updateFact(msg);
-				return true;
-			}
-			else {
-				this.learnFact(msg);
-				return true;
-			}
-		}
-		else {
-			return false;
-		}
 	}
 	
 	public boolean updateFact(String msg) {
@@ -143,7 +129,7 @@ public class Pearson {
 	public int getNumberOfFacts() {
 		return this.numberOfFacts;
 	}
-	public String getPersonNumber() {
+	public Integer getPersonNumber() {
 		return this.personalNumber;
 	}
 	public String getName() {
