@@ -8,7 +8,6 @@ public class Teacher extends Pearson {
 
 	public Teacher(String name, String surname, Integer personalNumber, String... contents) {
 		super(name, surname, personalNumber, contents);
-		System.out.println("I am a Teacher!");
 	}	
 	
 	protected boolean listen(Pearson p, String msg) {

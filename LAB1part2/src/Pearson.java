@@ -41,9 +41,15 @@ public abstract class Pearson {
 	}
 
 	public enum FactStatus {
-		accessible,
-		passive,
-		forgotten;
+		accessible(true),
+		passive(true),
+		forgotten(false);
+		
+		boolean value;
+		
+		private FactStatus(boolean value) {
+			this.value = value;
+		}
 	}
 	 
 	protected class Fact {
@@ -73,8 +79,7 @@ public abstract class Pearson {
 	public boolean knowsFact(String contents) {
 		for(Fact obj : this.list) {
 			if(obj.contents.equals(contents)) {
-				System.out.printf("%s\n", obj.factStatus);
-				return true;
+				return obj.factStatus.value;
 			}
 		}
 		return false;

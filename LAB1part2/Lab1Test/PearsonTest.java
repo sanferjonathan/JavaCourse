@@ -95,8 +95,10 @@ public class PearsonTest {
 		PearsonUnderTest.updateFactList();
 		PearsonUnderTest.updateFactList();
 		PearsonUnderTest.updateFactList();
-//		assertEquals("passive", PearsonUnderTest4.getList().get(0).factStatus.toString());
-//		assertEquals("passive", PearsonUnderTest5.getList().get(0).factStatus.toString());
+		PearsonUnderTest4.updateFactList();
+		PearsonUnderTest4.updateFactList();
+		PearsonUnderTest4.updateFactList();
+		assertEquals("passive", PearsonUnderTest4.getList().get(0).factStatus.toString());
 		assertEquals("passive", PearsonUnderTest.getList().get(0).factStatus.toString());
 		PearsonUnderTest.updateFact("hej");
 		assertEquals("accessible", PearsonUnderTest.getList().get(0).factStatus.toString());
@@ -104,7 +106,8 @@ public class PearsonTest {
 		PearsonUnderTest.updateFactList();
 		PearsonUnderTest.updateFactList();
 		PearsonUnderTest.updateFactList();
-//		assertEquals("forgotten", PearsonUnderTest4.getList().get(3).factStatus.toString());
+		PearsonUnderTest4.updateFactList();
+		assertEquals("forgotten", PearsonUnderTest4.getList().get(3).factStatus.toString());
 		assertEquals("forgotten", PearsonUnderTest.getList().get(0).factStatus.toString());
 	}
 
@@ -132,6 +135,9 @@ public class PearsonTest {
 		assertEquals("forgotten", PearsonUnderTest.getList().get(2).factStatus.toString());
 		PearsonUnderTest.updateFactList();
 		assertEquals(1, PearsonUnderTest.getList().size());
+		PearsonUnderTest.listen(PearsonUnderTest3, "sej");
+		assertEquals("accessible", PearsonUnderTest.getList().get(1).factStatus.toString());
+		assertEquals(2, PearsonUnderTest.getList().size());
 	}
 	
 	@Test
