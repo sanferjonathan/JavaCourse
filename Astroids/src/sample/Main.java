@@ -31,7 +31,7 @@ public class Main extends Application {
         player = new Player();
         player.setVelocety(new Point2D(1, 0));
 
-        addPedestrian(player, 300, 300);
+        addGameObject(player, 300, 300);
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
@@ -45,15 +45,15 @@ public class Main extends Application {
 
     private void addBullet(GameObject bullet, double x, double y){
         bullets.add(bullet);
-        addPedestrian(bullet, x, y);
+        addGameObject(bullet, x, y);
     }
 
     private void addEnemy(GameObject enemy, double x, double y){
         enemies.add(enemy);
-        addPedestrian(enemy, x, y);
+        addGameObject(enemy, x, y);
     }
 
-    private void addPedestrian(GameObject gameObject, double x, double y){
+    private void addGameObject(GameObject gameObject, double x, double y){
         gameObject.getView().setTranslateX(x);
         gameObject.getView().setTranslateY(y);
         root.getChildren().add(gameObject.getView());
