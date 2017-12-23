@@ -24,6 +24,7 @@ public class Main extends Application {
     private Pane root;
     private Canvas canvas;
     private List<Pedestrian> pedestrians = new ArrayList<>();
+
     private AnimationTimer timer = new AnimationTimer() {
         @Override
         public void handle(long now) {
@@ -44,7 +45,7 @@ public class Main extends Application {
 
     public void onUpdate(){
         boolean collide = false;
-        if(Math.random() < 0.05){
+        if(Math.random() < 0.01){
             collide = spawnCheck(collide);
             addPedestrian(collide);
         }
@@ -87,7 +88,7 @@ public class Main extends Application {
             pedestrian.drawCenteredCircle(g, pedestrian);
         }
         g.strokeText(collisionCounter.toString(), 1140, 50);
-        g.strokeText("Collisions: ", 1080, 50);
+        g.strokeText("Collision: ", 1080, 50);
         g.strokeText(goalCounter.toString(), 1000, 50);
         g.strokeText("Goals: ", 960, 50);
 
@@ -120,7 +121,6 @@ public class Main extends Application {
                         pedestrians.get(i).kill();
                         pedestrians.get(j).kill();
                         collisionCounter++;
-                        System.out.println("hit!");
                     }
                 }
             }
