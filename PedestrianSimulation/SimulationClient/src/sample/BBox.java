@@ -12,7 +12,7 @@ public class BBox {
         this.y = y;
     }
 
-    public boolean isColliding(BBox other){
+    public boolean isColliding(BBox other) {
         return Math.sqrt(Math.pow(x - other.x, 2) +
                 Math.pow(y - other.y, 2)) < radius;
     }

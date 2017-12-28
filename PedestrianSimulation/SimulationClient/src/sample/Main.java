@@ -1,14 +1,12 @@
 package sample;
 
-//import java.net.*;
 import java.io.*;
 
 
-class Main {
-    public static void main(String [] args) throws IOException
-    {
-        PedestrianClient klientTrad = new PedestrianClient();
-        klientTrad.start();
+public class Main {
+    public static void main(String [] args) throws IOException {
+        PedestrianClient clientThread = new PedestrianClient();
+        clientThread.start();
     }
 }
 
