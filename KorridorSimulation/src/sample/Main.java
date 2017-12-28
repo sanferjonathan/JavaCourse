@@ -17,9 +17,9 @@ import java.util.List;
 public class Main extends Application {
 
     private final int radius = 20;
-    private final double blueX = 100, redX = 1100;
+    private final double blueX = 10, redX = 1190;
     private  double blueRandY, redRandY;
-    private Integer collisionCounter = 0, goalCounter = 0, idCounter = 0;
+    private Integer collisionCounter = 0, goalCounter = 0, idCounter = 0, uppdateCounter = 0, spawnrate = 60;
     private GraphicsContext g;
     private Pane root;
     private Canvas canvas;
@@ -45,13 +45,14 @@ public class Main extends Application {
 
     public void onUpdate(){
         boolean collide = false;
-        if(Math.random() < 0.01){
+        if(uppdateCounter >= spawnrate){
             collide = spawnCheck(collide);
             addPedestrian(collide);
         }
         for(Pedestrian pedestrian : pedestrians) {
             pedestrian.update();
         }
+        uppdateCounter++;
         render();
     }
 
@@ -78,6 +79,7 @@ public class Main extends Application {
             pedestrians.add(new Pedestrian(
                     redX, redRandY, radius, idCounter, false));
             idCounter++;
+            uppdateCounter = 0;
         }
     }
 
@@ -116,11 +118,13 @@ public class Main extends Application {
     public void collisionCheck(){
         for(int i = 0; i < pedestrians.size(); i++){
             for(int j = 0; j < pedestrians.size(); j++){
-                if(i != j) { //this if runs two times for every collision :(
-                    if (pedestrians.get(i).isColliding(pedestrians.get(j))) {
-                        pedestrians.get(i).kill();
-                        pedestrians.get(j).kill();
-                        collisionCounter++;
+                if(i != j) {
+                    if(pedestrians.get(j).isAlive()){
+                        if (pedestrians.get(i).isColliding(pedestrians.get(j))) {
+                            pedestrians.get(i).kill();
+                            pedestrians.get(j).kill();
+                            collisionCounter++;
+                        }
                     }
                 }
             }
@@ -129,8 +133,13 @@ public class Main extends Application {
 
     public void goalCheck(){
         for(Pedestrian pedestrian : pedestrians){
-            if(pedestrian.getXCenter() > 1150 ||
-                    pedestrian.getXCenter() < 50){
+            if(pedestrian.getSide() == true
+                    && pedestrian.getXCenter() > 1100){
+                pedestrian.kill();
+                goalCounter++;
+            }
+            if(pedestrian.getSide() == false
+                    && pedestrian.getXCenter() < 100){
                 pedestrian.kill();
                 goalCounter++;
             }
