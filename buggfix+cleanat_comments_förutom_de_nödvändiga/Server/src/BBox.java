@@ -1,5 +1,3 @@
-
-
 public class BBox {
     private int radius, id;
     private double x, y;

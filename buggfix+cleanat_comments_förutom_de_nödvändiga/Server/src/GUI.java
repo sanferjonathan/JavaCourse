@@ -1,11 +1,11 @@
 
 import javafx.animation.AnimationTimer;
-import javafx.application.Application; 
-import javafx.scene.Group; 
+import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.stage.Stage; 
-import javafx.scene.text.Text; 
-        
+import javafx.stage.Stage;
+import javafx.scene.text.Text;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -30,7 +30,7 @@ import java.util.Vector;
 
 public class GUI extends Application {
 
-	static Server ServerTrad;
+    static Server ServerTrad;
     private Integer canvasX = Main.GetCanvasY();//1200
     private Integer canvasY = Main.GetCanvasY();//300
     private final double blueX = 100, redX = 1100;
@@ -44,15 +44,15 @@ public class GUI extends Application {
             onUpdate();
         }
     };
-    
-    public static void initialize() 
+
+    public static void initialize()
     {
-    	
+
         ServerTrad = new Server("ServerTrad"); //Statisk, speglas datan verkligen?
         ServerTrad.start();
     }
-    
-    
+
+
     private Parent createContent(){
         root = new Pane();
         canvas = new Canvas(Main.GetCanvasX(), Main.GetCanvasY());
@@ -76,79 +76,79 @@ public class GUI extends Application {
         Pedestrian p2 = new Pedestrian(0, redX, redRandY);
         boolean pCollide = false;
         boolean p2Collide = false;
-        
+
         synchronized(this.pedestrians) {
-	        for(Pedestrian p : this.pedestrians)
-	        {
-	              if (p1.isColliding(p))
-	              {
-	            	  pCollide = true;
-	              }
-	              else if(p2.isColliding(p)) {
-	                   p2Collide = true;
-	              }
-	              if(pCollide || p2Collide)
-	            	  break;
-	        }
+            for(Pedestrian p : this.pedestrians)
+            {
+                if (p1.isColliding(p))
+                {
+                    pCollide = true;
+                }
+                else if(p2.isColliding(p)) {
+                    p2Collide = true;
+                }
+                if(pCollide || p2Collide)
+                    break;
+            }
         }
-		 
-		 if(!pCollide)
-		 {
-	   			 System.out.println("ADDED PEDESTRIAN, id x,y: " + p1.id + " " +  p1.xCenter + " " + p1.yCenter);
-	   			synchronized(this.pedestrians) {
-	   			Main.GetPedestrianList().add(new Pedestrian(p1.id, p1.xCenter, p1.yCenter));
-	   			}
-	            
-		 }
-		 else if(!p2Collide)
-		 {
-			 synchronized(this.pedestrians) {
-   			 System.out.println("ADDED PEDESTRIAN, id:x,y" + p2.id + p2.xCenter + p2.yCenter);
-   			this.pedestrians.add(new Pedestrian(p2.id, p2.xCenter, p2.yCenter));
-			 }
-		 }
-			 
+
+        if(!pCollide)
+        {
+            System.out.println("ADDED PEDESTRIAN, id x,y: " + p1.id + " " +  p1.xCenter + " " + p1.yCenter);
+            synchronized(this.pedestrians) {
+                Main.GetPedestrianList().add(new Pedestrian(p1.id, p1.xCenter, p1.yCenter));
+            }
+
+        }
+        else if(!p2Collide)
+        {
+            synchronized(this.pedestrians) {
+                System.out.println("ADDED PEDESTRIAN, id:x,y" + p2.id + p2.xCenter + p2.yCenter);
+                this.pedestrians.add(new Pedestrian(p2.id, p2.xCenter, p2.yCenter));
+            }
+        }
+
     }
 
     private void render(){
         g.clearRect(0, 0, Main.GetCanvasX(), Main.GetCanvasY());
-			 int inc = 0;
-			 synchronized(this.pedestrians) {
-		        for(Pedestrian pedestrian : this.pedestrians){
-		            pedestrian.drawCenteredCircle(g, pedestrian);
-		            inc++;
-		        }
-			 }
-		        System.out.println("Rendered peds:" + inc + " List size:" + this.pedestrians.size());
-		 
+        int inc = 0;
+        synchronized(this.pedestrians) {
+            for(Pedestrian pedestrian : this.pedestrians){
+                pedestrian.drawCenteredCircle(g, pedestrian);
+                inc++;
+            }
+        }
+        System.out.println("Rendered peds:" + inc + " List size:" + this.pedestrians.size());
+
         g.strokeText(Main.GetCollisionCounter().toString(), Main.GetCanvasX()-60.0, 50);
         g.strokeText("Collision: ", Main.GetCanvasX()-110.0, 50);
         g.strokeText(Main.GetGoalCounter() - Main.GetCollisionCounter() + " / " + (Main.GetMaxBluePedestrians()+Main.GetMaxRedPedestrians()), Main.GetCanvasX()-240, 50);
         g.strokeText("Succeeded:", Main.GetCanvasX()-310.0, 50);
-        
+
         g.strokeText(Main.GetTimeSteps().toString(), Main.GetCanvasX()-390, 50);
         g.strokeText("Time-steps: ", Main.GetCanvasX()-460.0, 50);
-        
+
         g.strokeText("Width: " + Main.GetCanvasX().toString() + " Height: " + Main.GetCanvasY().toString() + " Spawnrate: " + Main.GetSpawnRate().toString()
-        		+ " Pedestrian size: " + Main.GetRadie().toString() + " Red pedestrian limit: " + Main.GetMaxRedPedestrians().toString()
-        		+ " Blue pedestrian limit: " + Main.GetMaxBluePedestrians().toString(), Main.GetCanvasX()*0.05, 50);
+                + " Pedestrian size: " + Main.GetRadie().toString() + " Red pedestrian limit: " + Main.GetMaxRedPedestrians().toString()
+                + " Blue pedestrian limit: " + Main.GetMaxBluePedestrians().toString(), Main.GetCanvasX()*0.05, 50);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-    	this.pedestrians = Main.GetPedestrianList();
+        this.pedestrians = Main.GetPedestrianList();
 
         primaryStage.setScene(new Scene(createContent()));
         primaryStage.setTitle("Simulation");
-    	initialize();
+        initialize();
         primaryStage.getScene().setOnKeyPressed(event -> {
 
             if(event.getCode() == KeyCode.ENTER){
-            	Main.ToggleRun();
+                Main.ToggleRun();
                 timer.start();
             }
             else if(event.getCode() == KeyCode.P){
-            	Main.ToggleRun();
+                Main.ToggleRun();
                 timer.stop();
             }
             else if(event.getCode() == KeyCode.Q){

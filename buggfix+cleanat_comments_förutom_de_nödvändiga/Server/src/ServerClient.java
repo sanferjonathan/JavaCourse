@@ -21,7 +21,7 @@ public class ServerClient implements Runnable {
     DataInputStream din = null;
     OutputStream outToClient = null;
     DataOutputStream out = null;
-	List<Pedestrian> pedestrianList = Collections.synchronizedList(new ArrayList<Pedestrian>());
+    List<Pedestrian> pedestrianList = Collections.synchronizedList(new ArrayList<Pedestrian>());
 
     public ServerClient(Socket anslutning, String namn, int id) throws IOException {
         this.anslutning = anslutning;
@@ -32,49 +32,49 @@ public class ServerClient implements Runnable {
         this.outToClient = anslutning.getOutputStream();
         this.out = new DataOutputStream(outToClient);
     }
-    
+
     public void SkickaTillKlient(String meddelande) throws IOException {
         this.out.writeUTF(meddelande);
     }
-    
-    public boolean isNumeric(String str)  
-    {  
-      try  
-      {  
-        double d = Double.parseDouble(str);  
-      }  
-      catch(NumberFormatException nfe)  
-      {  
-        return false;  
-      }  
-      return true;  
+
+    public boolean isNumeric(String str)
+    {
+        try
+        {
+            double d = Double.parseDouble(str);
+        }
+        catch(NumberFormatException nfe)
+        {
+            return false;
+        }
+        return true;
     }
 
     public void UpdatePedestrianList(String[] pedestriansInfoList) throws IOException {
-    	if(pedestriansInfoList != null && pedestriansInfoList.length > 0 && pedestriansInfoList[0] != "")
-    	{
-    		List<Pedestrian> tempList = Collections.synchronizedList(new ArrayList<Pedestrian>());
-	        for (String line: pedestriansInfoList)
-	        {
+        if(pedestriansInfoList != null && pedestriansInfoList.length > 0 && pedestriansInfoList[0] != "")
+        {
+            List<Pedestrian> tempList = Collections.synchronizedList(new ArrayList<Pedestrian>());
+            for (String line: pedestriansInfoList)
+            {
 
-	            String[] vars = line.split(";");
-	            if(vars.length > 1)//1
-	            {
-	            if(vars[0] != "" && vars[1] != "" && vars[2] != "" && isNumeric(vars[0]) && isNumeric(vars[1]) && isNumeric(vars[2]) )
-	            {
-	            Pedestrian p = new Pedestrian(Integer.parseInt(vars[0]), Double.parseDouble(vars[1]), Double.parseDouble(vars[2]));
-	            synchronized(this.pedestrianList) {
-					 tempList.add(p);
-	            }
-	            }
-	            }
-	        }
-	        if(tempList.size() >= 1)
-	        {
-	        	this.pedestrianList.clear();
-	        	this.pedestrianList = tempList;
-	        }
-    	}
+                String[] vars = line.split(";");
+                if(vars.length > 1)//1
+                {
+                    if(vars[0] != "" && vars[1] != "" && vars[2] != "" && isNumeric(vars[0]) && isNumeric(vars[1]) && isNumeric(vars[2]) )
+                    {
+                        Pedestrian p = new Pedestrian(Integer.parseInt(vars[0]), Double.parseDouble(vars[1]), Double.parseDouble(vars[2]));
+                        synchronized(this.pedestrianList) {
+                            tempList.add(p);
+                        }
+                    }
+                }
+            }
+            if(tempList.size() >= 1)
+            {
+                this.pedestrianList.clear();
+                this.pedestrianList = tempList;
+            }
+        }
     }
 
     public String[] TaEmotFranKlient() throws IOException {
@@ -82,21 +82,21 @@ public class ServerClient implements Runnable {
         String line;
         line = din.readUTF();
         if (line == "done" || line == "") {
-        	this.pedestrianList.clear();
+            this.pedestrianList.clear();
             return empty;
-        } 
-        else 
+        }
+        else
         {
-            String[] pedestriansInfoList; 
+            String[] pedestriansInfoList;
             pedestriansInfoList = line.split("/");
             return pedestriansInfoList;
         }
     }
-    
-    
+
+
     public void Listen() throws IOException
     {
-    	this.SkickaTillKlient("id" + this.id.toString());
+        this.SkickaTillKlient("id" + this.id.toString());
         while(true)
         {
             String[] pedestriansInfoList = null;
@@ -105,9 +105,9 @@ public class ServerClient implements Runnable {
                 pedestriansInfoList = this.TaEmotFranKlient();
                 if(pedestriansInfoList != null)
                 {
-	                this.UpdatePedestrianList(pedestriansInfoList);
-	                pedestriansInfoList = null;
-	                break;
+                    this.UpdatePedestrianList(pedestriansInfoList);
+                    pedestriansInfoList = null;
+                    break;
                 }
             }
         }
@@ -116,14 +116,14 @@ public class ServerClient implements Runnable {
 
     public void run()
     {
-    	try
-    	{
-			this.Listen();
-		}
-    	catch (IOException e)
-    	{
-			e.printStackTrace();
-		}
+        try
+        {
+            this.Listen();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public void start() {
