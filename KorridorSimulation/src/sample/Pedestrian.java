@@ -10,7 +10,7 @@ import java.util.List;
 public class Pedestrian {
 
     private boolean alive = true, side;
-    private final int r, id, close = 40, far = 200;
+    private final int r, id, close = 40, far = 300;
     private double xCenter, yCenter, velX = 0, velY = 0;
     private double upp = 0, down = 0, forward = 0;
     private List<Pedestrian> threats = new ArrayList<>();
@@ -60,7 +60,7 @@ public class Pedestrian {
     }
     //gather all potential threats within 50 units in a list
     public void scan(Pedestrian other, boolean value){
-        if(distanceCheck(other) < 200){
+        if(distanceCheck(other) < 300){
             this.threats.add(other);
         }
         if(value){
@@ -94,7 +94,7 @@ public class Pedestrian {
                 friendlyPush(threat);
             }
             else if(this.side == threat.side
-                    && this.distanceCheck(threat) > 40){
+                    && this.distanceCheck(threat) >= 100){
                 friendlyPull(threat);
             }
         }
