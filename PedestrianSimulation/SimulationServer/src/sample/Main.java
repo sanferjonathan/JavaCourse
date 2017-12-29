@@ -14,8 +14,8 @@ public class Main {
     public static Integer radius = 20;
     public static Integer timeSteps = 0;
     public static Integer spawnRate = 1500;
-    public static Integer maxBluePedestrians = 10;
-    public static Integer maxRedPedestrians = 10;
+    public static Integer maxBluePedestrians = 40;
+    public static Integer maxRedPedestrians = 40;
     public static boolean run = false;
 
     public static Integer getMaxBluePedestrians() {
@@ -56,7 +56,6 @@ public class Main {
             run = false;
         else
             run = true;
-        //System.out.println("lol?");
     }
     public static boolean getRun() {
         return run;

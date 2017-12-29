@@ -16,13 +16,13 @@ public class PedestrianClient implements Runnable{
     private Thread Trad;
     ArrayList < Pedestrian > pedestrianList = new ArrayList < Pedestrian > ();
 
-    PedestrianClient() throws UnknownHostException, IOException {
+    PedestrianClient() throws IOException {
         connection = new Socket(InetAddress.getByName(null), port);
     }
 
     public void SkickaTillServer(String message) throws IOException {
-        OutputStream outToClient = null;
-        DataOutputStream out = null;
+        OutputStream outToClient;
+        DataOutputStream out;
 
         outToClient = connection.getOutputStream();
         out = new DataOutputStream(outToClient);
@@ -30,7 +30,7 @@ public class PedestrianClient implements Runnable{
         System.out.println("Skickat tbx detta: " + message);
     }
 
-    private String GeneratePedestrianList() throws IOException {
+    private String GeneratePedestrianList() {
         String pedestrianList = "";
         if(this.pedestrianList.size() > 1) {
             for (Pedestrian OnePedestrian: this.pedestrianList) {
@@ -50,7 +50,7 @@ public class PedestrianClient implements Runnable{
 
     public String[] TaEmotFranServer() throws IOException
     {
-        DataInputStream din = null;
+        DataInputStream din;
         String[] emptyList = null;
         String line = null;
         din = new DataInputStream(connection.getInputStream());
@@ -69,7 +69,7 @@ public class PedestrianClient implements Runnable{
                 int id = Integer.parseInt(pedestriansInfo);
                 if(this.id == null)
                     this.id = id;
-                pedestriansInfo = null;
+                //pedestriansInfo = null; Behövs ej?
                 System.out.println("Got ID from server:" + id);
             }
             else {
@@ -132,7 +132,7 @@ public class PedestrianClient implements Runnable{
                 if(pedestriansInfoList != null) {
                     this.UpdatePedestrianList(pedestriansInfoList);
                     System.out.println("klient har tagit emot");
-                    pedestriansInfoList = null;
+                    //pedestriansInfoList = null; Behövs ej?
                     break;
                 }
             }
@@ -141,7 +141,7 @@ public class PedestrianClient implements Runnable{
         }
     }
 
-    public void Calculate(ArrayList pedestrians) throws IOException {
+    public void Calculate(ArrayList pedestrians) { // måste ta in Arraylist utan att använda?
         System.out.println("Calculating() . . ");
         this.updateVelocity();
         this.onUpdate();

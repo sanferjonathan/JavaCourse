@@ -46,12 +46,12 @@ public class Pedestrian {
     public void defaultVelocity() {
         if(this.id == 1) {
             System.out.println("Move forward");
-            velX = 1.0;
+            velX = 4.0;
             velY = 0.0;
         }
         else if(this.id == 0) {
             System.out.println("Move forward");
-            velX = -1.0;
+            velX = -4.0;
             velY = 0.0;
         }
     }
@@ -136,30 +136,30 @@ public class Pedestrian {
     public void calculateMove() {
         if(forward > upp && forward > down) {
             if(this.id == 1) {
-                velX = 1.0;
+                velX = 4.0;
             }
             else{
-                velX = -1.0;
+                velX = -4.0;
             }
             velY = 0.0;
         }
         else if(upp > forward &&  upp > down) {
             if(this.id == 1) {
-                velX = 0.5;
+                velX = 2.0;
             }
             else{
-                velX = -0.5;
+                velX = -2.0;
             }
-            velY = 0.5;
+            velY = 2.0;
         }
         else if(down > forward && down > upp) {
             if(this.id == 1) {
-                velX = 0.5;
+                velX = 2.0;
             }
             else {
-                velX = -0.5;
+                velX = -2.0;
             }
-            velY = -0.5;
+            velY = -2.0;
         }
         upp = 0;
         down = 0;
@@ -194,32 +194,8 @@ public class Pedestrian {
                 && this.xCenter + range1 <= threat.xCenter + range2;
     }
 
-    public void blueVsRed(Pedestrian threat) {
-        if(threat.yCenter <= this.yCenter
-                && this.yCenter <= threat.yCenter + this.r) {
-            velX = 0.5;
-            velY = 0.5;
-            System.out.println("Move snett1");
-        }
-        else if(threat.yCenter >= this.yCenter
-                && this.yCenter >= threat.yCenter - this.r) {
-            velX = 0.5;
-            velY = -0.5;
-            System.out.println("Move snett2");
-        }
-        else {
-            velX = 1.0;
-            velY = 0.0;
-            System.out.println("Move snett3");
-        }
-    }
-
     public double distanceCheck(Pedestrian threat) {
         return Math.sqrt(Math.pow(this.xCenter - threat.xCenter, 2) +
                 Math.pow(this.yCenter - threat.yCenter, 2));
-    }
-
-    public boolean isColliding(Pedestrian other){
-        return bBox().isColliding(other.bBox());
     }
 }

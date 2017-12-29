@@ -20,7 +20,7 @@ public class Main extends Application {
     private final int radius = 20;
     private final double blueX = 10, redX = 1190;
     private double blueRandY, redRandY;
-    private Integer collisionCounter = 0, goalCounter = 0, idCounter = 0, uppdateCounter = 0, spawnrate = 60;
+    private Integer collisionCounter = 0, goalCounter = 0, idCounter = 0, uppdateCounter = 0, spawnrate = 30;
     private GraphicsContext g;
     private Pane root;
     private Canvas canvas;
