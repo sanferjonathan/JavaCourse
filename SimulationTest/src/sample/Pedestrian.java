@@ -10,14 +10,13 @@ import java.util.List;
 public class Pedestrian {
 
     private boolean alive = true, side;
-    private final int r, id, close = 40, far = 300;
+    private final int r, close = 40, far = 300;
     private double xCenter, yCenter, velX = 0, velY = 0;
     private double upp = 0, down = 0, forward = 0;
     private List<Pedestrian> threats = new ArrayList<>();
 
 
-    public Pedestrian(double x, double y, int r, int id, boolean side) {
-        this.id = id;
+    public Pedestrian(double x, double y, int r, boolean side) {
         this.xCenter = x - (r / 2);
         this.yCenter = y - (r / 2);
         this.r = r;
@@ -54,11 +53,6 @@ public class Pedestrian {
         g.fillOval(xCenter, yCenter, r, r);
     }
 
-    public BBox bBox() {
-        return new BBox(xCenter, yCenter, r, id);
-    }
-
-    //gather all potential threats within 50 units in a list
     public void scan(Pedestrian other, boolean value) {
         if (distanceCheck(other) < 300) {
             this.threats.add(other);
@@ -210,6 +204,7 @@ public class Pedestrian {
     }
 
     public boolean isColliding(Pedestrian other) {
-        return bBox().isColliding(other.bBox());
+        return Math.sqrt(Math.pow(xCenter - other.xCenter, 2) +
+                Math.pow(yCenter - other.yCenter, 2)) < r;
     }
 }

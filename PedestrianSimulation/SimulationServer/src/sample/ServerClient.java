@@ -11,34 +11,33 @@ import java.util.List;
 
 public class ServerClient implements Runnable {
 
-    protected Socket anslutning = null;
-    String namn = null;
-    Integer id = null;
-    private Thread Trad;
+    protected Socket connection;
+    String name;
+    Integer id;
 
-    DataInputStream din = null;
-    OutputStream outToClient = null;
-    DataOutputStream out = null;
+    DataInputStream inData;
+    OutputStream outToClient;
+    DataOutputStream outData;
     List<Pedestrian> pedestrianList = Collections
             .synchronizedList(new ArrayList<Pedestrian>());
 
-    public ServerClient(Socket anslutning, String namn, int id) throws IOException {
-        this.anslutning = anslutning;
-        this.namn = namn;
+    public ServerClient(Socket connection, String name, int id) throws IOException {
+        this.connection = connection;
+        this.name = name;
         this.id = id;
 
-        this.din = new DataInputStream(anslutning.getInputStream());
-        this.outToClient = anslutning.getOutputStream();
-        this.out = new DataOutputStream(outToClient);
+        this.inData = new DataInputStream(connection.getInputStream());
+        this.outToClient = connection.getOutputStream();
+        this.outData = new DataOutputStream(outToClient);
     }
 
-    public void SkickaTillKlient(String meddelande) throws IOException {
-        this.out.writeUTF(meddelande);
+    public void sendToClient(String message) throws IOException {
+        this.outData.writeUTF(message);
     }
 
     public boolean isNumeric(String str) {
         try {
-            double d = Double.parseDouble(str);
+            Double.parseDouble(str);
         }
         catch(NumberFormatException nfe) {
             return false;
@@ -73,10 +72,10 @@ public class ServerClient implements Runnable {
         }
     }
 
-    public String[] TaEmotFranKlient() throws IOException {
+    public String[] receiveFromClient() throws IOException {
         String[] empty = null;
         String line;
-        line = din.readUTF();
+        line = inData.readUTF();
         if (line == "done" || line == "") {
             this.pedestrianList.clear();
             return empty;
@@ -90,14 +89,13 @@ public class ServerClient implements Runnable {
 
 
     public void Listen() throws IOException {
-        this.SkickaTillKlient("id" + this.id.toString());
+        this.sendToClient("id" + this.id.toString());
         while(true) {
             String[] pedestriansInfoList = null;
             while (pedestriansInfoList == null) {
-                pedestriansInfoList = this.TaEmotFranKlient();
+                pedestriansInfoList = this.receiveFromClient();
                 if(pedestriansInfoList != null) {
                     this.UpdatePedestrianList(pedestriansInfoList);
-                    pedestriansInfoList = null;
                     break;
                 }
             }
@@ -111,14 +109,6 @@ public class ServerClient implements Runnable {
         }
         catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    public void start() {
-        System.out.println("Starting " + namn);
-        if (Trad == null) {
-            Trad = new Thread(this, namn);
-            Trad.start();
         }
     }
 }

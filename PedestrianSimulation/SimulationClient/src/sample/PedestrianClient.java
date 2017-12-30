@@ -62,16 +62,17 @@ public class PedestrianClient implements Runnable {
             pedestriansInfo = inData.readUTF();
         }
 
+        return handleInfoList(pedestriansInfo);
+    }
+
+    public String[] handleInfoList(String pedestriansInfo){
         String[] pedestriansInfoList;
         if (pedestriansInfo != null) {
             if(pedestriansInfo.contains("id")) {
                 setId(pedestriansInfo);
             }
             else {
-                System.out.println("Indata: " + pedestriansInfo + "end");
                 pedestriansInfoList = pedestriansInfo.split("/");
-                System.out.println("OK:" + pedestriansInfoList[0]
-                        + " last: " + pedestriansInfoList[pedestriansInfoList.length-1]);
                 return pedestriansInfoList;
             }
         }
@@ -145,6 +146,5 @@ public class PedestrianClient implements Runnable {
         outData = new DataOutputStream(connection.getOutputStream());
 
         outData.writeUTF(message);
-        System.out.println("Skickat tbx detta: " + message);
     }
 }

@@ -10,17 +10,15 @@ public class Server implements Runnable {
     private ServerSocket server;
     private Socket connection;
     public Integer numberOfClients = 0;
-    private Thread Trad;
+    private Thread thread;
     private String threadName;
     private Integer timeStamp = 0;
     long pastTime = 0L;
     private Integer spawnedBluePedestrians = 1;
     private Integer spawnedRedPedestrians = 1;
 
-    ArrayList<ServerClient> clientList = new ArrayList<ServerClient>();
-    List<Pedestrian> pedestrianList = null;
-
-    public String message = new String("");
+    ArrayList<ServerClient> clientList = new ArrayList<>();
+    List<Pedestrian> pedestrianList;
 
     Server(String name) {
         this.pedestrianList = Main.getPedestrianList();
@@ -137,9 +135,9 @@ public class Server implements Runnable {
     }
 
     public void start () {
-        if (Trad == null) {
-            Trad = new Thread (this, threadName);
-            Trad.start ();
+        if (thread == null) {
+            thread = new Thread (this, threadName);
+            thread.start ();
         }
     }
 
@@ -148,7 +146,7 @@ public class Server implements Runnable {
         this.server.setReuseAddress(true);
         System.out.println("B�rjar v�nta p� klienter");
 
-        this.VantaPaAnslutning();
+        this.waitingForConnections();
         spawnCheck();
         while(true) {
             System.out.println("");
@@ -156,7 +154,7 @@ public class Server implements Runnable {
                 Thread.sleep(40);
                 this.Broadcast();
                 Thread.sleep(40);
-                this.VantaPaSvar();
+                this.waitingForAnswer();
                 this.UppdateraData();
                 this.goalCheck();
                 this.collisionCheck();
@@ -168,21 +166,20 @@ public class Server implements Runnable {
         }
     }
 
-    public void VantaPaSvar() throws IOException, InterruptedException {
-        System.out.println("VantaPaSvar()");
-        Integer antalSvar = 0;
-        while(antalSvar < this.numberOfClients) {
-            antalSvar = 0;
-            for(ServerClient klient : this.clientList) {
-                if(!klient.pedestrianList.isEmpty()) {
-                    antalSvar++;
+    public void waitingForAnswer() throws IOException, InterruptedException {
+        Integer numberOfAnswers = 0;
+        while(numberOfAnswers < this.numberOfClients) {
+            numberOfAnswers = 0;
+            for(ServerClient client : this.clientList) {
+                if(!client.pedestrianList.isEmpty()) {
+                    numberOfAnswers++;
                 }
             }
         }
     }
 
 
-    public void VantaPaAnslutning() throws IOException {
+    public void waitingForConnections() throws IOException {
         while(this.numberOfClients < 2) {
             this.connection = server.accept();
             this.numberOfClients++;
@@ -211,7 +208,7 @@ public class Server implements Runnable {
         System.out.println("Broadcast()");
         String pedestrians = GeneratePedestrianList();
         for(ServerClient client : this.clientList) {
-            client.SkickaTillKlient(pedestrians);
+            client.sendToClient(pedestrians);
         }
     }
 

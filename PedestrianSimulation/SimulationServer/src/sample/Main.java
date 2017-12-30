@@ -6,14 +6,15 @@ import java.util.List;
 
 public class Main {
 
-    public static List<Pedestrian> pedestrianList = Collections.synchronizedList(new ArrayList<Pedestrian>());
+    public static List<Pedestrian> pedestrianList = Collections
+            .synchronizedList(new ArrayList<Pedestrian>());
     public static Integer collisionCounter = 0;
     public static Integer goalCounter = 0;
     public static Integer canvasY = 400;
     public static Integer canvasX = 1200;
     public static Integer radius = 20;
     public static Integer timeSteps = 0;
-    public static Integer spawnRate = 1500;
+    public static Integer spawnRate = 1000;
     public static Integer maxBluePedestrians = 40;
     public static Integer maxRedPedestrians = 40;
     public static boolean run = false;
@@ -52,7 +53,7 @@ public class Main {
     }
 
     public static void toggleRun() {
-        if(run == true)
+        if(run)
             run = false;
         else
             run = true;

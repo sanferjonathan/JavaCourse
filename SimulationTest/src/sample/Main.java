@@ -20,7 +20,7 @@ public class Main extends Application {
     private final int radius = 20;
     private final double blueX = 10, redX = 1190;
     private double blueRandY, redRandY;
-    private Integer collisionCounter = 0, goalCounter = 0, idCounter = 0, uppdateCounter = 0, spawnrate = 30;
+    private Integer collisionCounter = 0, goalCounter = 0, updateCounter = 0, spawnRate = 30;
     private GraphicsContext g;
     private Pane root;
     private Canvas canvas;
@@ -47,14 +47,14 @@ public class Main extends Application {
 
     public void onUpdate() {
         boolean collide = false;
-        if (uppdateCounter >= spawnrate) {
+        if (updateCounter >= spawnRate) {
             collide = spawnCheck(collide);
             addPedestrian(collide);
         }
         for (Pedestrian pedestrian : pedestrians) {
             pedestrian.update();
         }
-        uppdateCounter++;
+        updateCounter++;
         render();
     }
 
@@ -62,8 +62,8 @@ public class Main extends Application {
     public boolean spawnCheck(boolean collide) {
         blueRandY = Math.random() * canvas.getHeight();
         redRandY = Math.random() * canvas.getHeight();
-        Pedestrian p1 = new Pedestrian(blueX, blueRandY, radius, 10000000, true);
-        Pedestrian p2 = new Pedestrian(redX, redRandY, radius, 1000000, false);
+        Pedestrian p1 = new Pedestrian(blueX, blueRandY, radius, true);
+        Pedestrian p2 = new Pedestrian(redX, redRandY, radius, false);
         for (Pedestrian pedestrian : pedestrians) {
             if (p1.isColliding(pedestrian) || p2.isColliding(pedestrian)) {
                 collide = true;
@@ -76,12 +76,10 @@ public class Main extends Application {
     public void addPedestrian(boolean collide) {
         if (collide == false) {
             pedestrians.add(new Pedestrian(
-                    blueX, blueRandY, radius, idCounter, true));
-            idCounter++;
+                    blueX, blueRandY, radius, true));
             pedestrians.add(new Pedestrian(
-                    redX, redRandY, radius, idCounter, false));
-            idCounter++;
-            uppdateCounter = 0;
+                    redX, redRandY, radius, false));
+            updateCounter = 0;
         }
     }
 

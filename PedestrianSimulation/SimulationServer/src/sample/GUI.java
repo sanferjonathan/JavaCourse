@@ -13,10 +13,6 @@ import java.util.List;
 
 public class GUI extends Application {
 
-    static Server ServerTrad;
-    private Integer canvasX = Main.getCanvasY();//1200
-    private Integer canvasY = Main.getCanvasY();//300
-    private final double blueX = 100, redX = 1100;
     private GraphicsContext g;
     private Pane root;
     private Canvas canvas;
@@ -30,7 +26,8 @@ public class GUI extends Application {
     };
 
     public static void initialize() {
-        ServerTrad = new Server("ServerTrad"); //Statisk, speglas datan verkligen?
+        Server ServerTrad;
+        ServerTrad = new Server("ServerTrad");
         ServerTrad.start();
     }
 
@@ -49,44 +46,6 @@ public class GUI extends Application {
 
     public void onUpdate() {
         render();
-    }
-
-    public void spawnCheck() {
-        Double blueRandY = Math.random() * canvas.getHeight();
-        Double redRandY = Math.random() * canvas.getHeight();
-        Pedestrian p1 = new Pedestrian(1, blueX, blueRandY); //id x y SWITCHADE 0 1 ATM
-        Pedestrian p2 = new Pedestrian(0, redX, redRandY);
-        boolean pCollide = false;
-        boolean p2Collide = false;
-
-        synchronized(this.pedestrians) {
-            for(Pedestrian p : this.pedestrians)
-            {
-                if (p1.isColliding(p))
-                {
-                    pCollide = true;
-                }
-                else if(p2.isColliding(p)) {
-                    p2Collide = true;
-                }
-                if(pCollide || p2Collide)
-                    break;
-            }
-        }
-
-        if(!pCollide) {
-            System.out.println("ADDED PEDESTRIAN, id x,y: " + p1.id + " " +  p1.xCenter + " " + p1.yCenter);
-            synchronized(this.pedestrians) {
-                Main.getPedestrianList().add(new Pedestrian(p1.id, p1.xCenter, p1.yCenter));
-            }
-
-        }
-        else if(!p2Collide) {
-            synchronized(this.pedestrians) {
-                System.out.println("ADDED PEDESTRIAN, id:x,y" + p2.id + p2.xCenter + p2.yCenter);
-                this.pedestrians.add(new Pedestrian(p2.id, p2.xCenter, p2.yCenter));
-            }
-        }
     }
 
     private void render() {
