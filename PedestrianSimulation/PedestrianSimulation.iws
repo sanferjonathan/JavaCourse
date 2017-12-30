@@ -10,38 +10,54 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SimulationClient/src/sample/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Pedestrian.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SimulationClient/src/sample/Pedestrian.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="199" column="5" lean-forward="false" selection-start-line="199" selection-start-column="5" selection-end-line="199" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PedestrianClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SimulationClient/src/sample/PedestrianClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-376">
-              <caret line="71" column="52" lean-forward="false" selection-start-line="71" selection-start-column="52" selection-end-line="71" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5421687">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="PedestrianClient.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/SimulationClient/src/sample/PedestrianClient.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="440">
+                  <caret line="55" column="59" lean-forward="false" selection-start-line="55" selection-start-column="59" selection-end-line="55" selection-end-column="59" />
+                  <folding>
+                    <element signature="method#start#0;class#PedestrianClient#0" expanded="false" />
+                    <element signature="method#run#0;class#PedestrianClient#0" expanded="false" />
+                    <element signature="method#Listen#0;class#PedestrianClient#0" expanded="false" />
+                    <element signature="method#receiveFromServer#0;class#PedestrianClient#0" expanded="false" />
+                    <element signature="method#setId#0;class#PedestrianClient#0" expanded="false" />
+                    <element signature="method#UpdatePedestrianList#0;class#PedestrianClient#0" expanded="false" />
+                    <element signature="method#updateVelocity#0;class#PedestrianClient#0" expanded="false" />
+                    <element signature="method#onUpdate#0;class#PedestrianClient#0" expanded="false" />
+                    <element signature="method#GeneratePedestrianList#0;class#PedestrianClient#0" expanded="false" />
+                    <element signature="method#sendToServer#0;class#PedestrianClient#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="PedestrianTest.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/SimulationClient/test/sample/PedestrianTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="540">
+                  <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit4 Test Class" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <dirStrings>
@@ -57,8 +73,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/SimulationServer/src/sample/Main.java" />
-        <option value="$PROJECT_DIR$/SimulationClient/src/sample/PedestrianClient.java" />
+        <option value="$PROJECT_DIR$/SimulationClient/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/SimulationClient/src/sample/Pedestrian.java" />
+        <option value="$PROJECT_DIR$/SimulationClient/test/sample/PedestrianTest.java" />
+        <option value="$PROJECT_DIR$/SimulationClient/src/sample/PedestrianClient.java" />
       </list>
     </option>
   </component>
@@ -111,6 +129,17 @@
             </path>
             <path>
               <item name="PedestrianSimulation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SimulationClient" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PedestrianSimulation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SimulationClient" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PedestrianSimulation" type="b2602c69:ProjectViewProjectNode" />
               <item name="SimulationServer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -150,6 +179,15 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="sample" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -213,6 +251,81 @@
       <module name="" />
       <envs />
     </configuration>
+    <configuration name="PedestrianTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="SimulationClient" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="sample" />
+      <option name="MAIN_CLASS_NAME" value="sample.PedestrianTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="PedestrianTest.distanceCheck" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="SimulationClient" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="sample" />
+      <option name="MAIN_CLASS_NAME" value="sample.PedestrianTest" />
+      <option name="METHOD_NAME" value="distanceCheck" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="PedestrianTest.friendlyPush" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="SimulationClient" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="sample" />
+      <option name="MAIN_CLASS_NAME" value="sample.PedestrianTest" />
+      <option name="METHOD_NAME" value="friendlyPush" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -273,10 +386,20 @@
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
-    <list size="2">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.MainClient" />
       <item index="1" class="java.lang.String" itemvalue="Application.MainServer" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.PedestrianTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.PedestrianTest.distanceCheck" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.PedestrianTest.friendlyPush" />
     </list>
+    <recent_temporary>
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.PedestrianTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.PedestrianTest.friendlyPush" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.PedestrianTest.distanceCheck" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SbtLocalSettings">
     <option name="externalProjectsViewState">
@@ -297,12 +420,44 @@
       <option name="presentableId" value="Default" />
       <updated>1514506967713</updated>
       <workItem from="1514506971407" duration="2419000" />
-      <workItem from="1514516752587" duration="7825000" />
+      <workItem from="1514516752587" duration="36409000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="PedestrianTest - 2017.12.30 at 00h 14m 40s.xml">
+      <configuration name="PedestrianTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PedestrianTest - 2017.12.30 at 00h 14m 54s.xml">
+      <configuration name="PedestrianTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PedestrianTest - 2017.12.30 at 00h 15m 08s.xml">
+      <configuration name="PedestrianTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PedestrianTest - 2017.12.30 at 00h 17m 42s.xml">
+      <configuration name="PedestrianTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PedestrianTest - 2017.12.30 at 00h 20m 16s.xml">
+      <configuration name="PedestrianTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PedestrianTest - 2017.12.30 at 00h 28m 57s.xml">
+      <configuration name="PedestrianTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PedestrianTest - 2017.12.30 at 00h 29m 14s.xml">
+      <configuration name="PedestrianTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PedestrianTest - 2017.12.30 at 01h 13m 30s.xml">
+      <configuration name="PedestrianTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PedestrianTest_friendlyPush - 2017.12.30 at 00h 00m 20s.xml">
+      <configuration name="PedestrianTest.friendlyPush" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PedestrianTest_friendlyPush - 2017.12.30 at 00h 02m 11s.xml">
+      <configuration name="PedestrianTest.friendlyPush" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10244000" />
+    <option name="totallyTimeSpent" value="38828000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -310,19 +465,20 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49583334" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24496289" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24496289" sideWeight="0.50625" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24496289" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24496289" sideWeight="0.49375" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13541667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -334,7 +490,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,7 +499,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -396,22 +553,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SimulationClient/src/sample/PedestrianClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-376">
-          <caret line="71" column="52" lean-forward="false" selection-start-line="71" selection-start-column="52" selection-end-line="71" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimulationClient/src/sample/Pedestrian.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="199" column="5" lean-forward="false" selection-start-line="199" selection-start-column="5" selection-end-line="199" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SimulationClient/src/sample/BBox.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -420,11 +561,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SimulationClient/test/sample/PedestrianTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimulationClient/src/sample/Pedestrian.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="9" column="59" lean-forward="true" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
+          <folding>
+            <element signature="method#Pedestrian#0;class#Pedestrian#0" expanded="false" />
+            <element signature="method#scan#0;class#Pedestrian#0" expanded="false" />
+            <element signature="method#defaultVelocity#0;class#Pedestrian#0" expanded="false" />
+            <element signature="method#distanceCheck#0;class#Pedestrian#0" expanded="false" />
+            <element signature="method#sortNeighbors#0;class#Pedestrian#0" expanded="false" />
+            <element signature="method#enemyDodge#0;class#Pedestrian#0" expanded="false" />
+            <element signature="method#friendlyPush#0;class#Pedestrian#0" expanded="false" />
+            <element signature="method#friendlyPull#0;class#Pedestrian#0" expanded="false" />
+            <element signature="method#calculateMove#0;class#Pedestrian#0" expanded="false" />
+            <element signature="method#southWest#0;class#Pedestrian#0" expanded="false" />
+            <element signature="method#northEast#0;class#Pedestrian#0" expanded="false" />
+            <element signature="method#southEast#0;class#Pedestrian#0" expanded="false" />
+            <element signature="method#northWest#0;class#Pedestrian#0" expanded="false" />
+            <element signature="method#update#0;class#Pedestrian#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SimulationClient/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        <state relative-caret-position="160">
+          <caret line="8" column="33" lean-forward="true" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimulationClient/src/sample/PedestrianClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="55" column="59" lean-forward="false" selection-start-line="55" selection-start-column="59" selection-end-line="55" selection-end-column="59" />
+          <folding>
+            <element signature="method#start#0;class#PedestrianClient#0" expanded="false" />
+            <element signature="method#run#0;class#PedestrianClient#0" expanded="false" />
+            <element signature="method#Listen#0;class#PedestrianClient#0" expanded="false" />
+            <element signature="method#receiveFromServer#0;class#PedestrianClient#0" expanded="false" />
+            <element signature="method#setId#0;class#PedestrianClient#0" expanded="false" />
+            <element signature="method#UpdatePedestrianList#0;class#PedestrianClient#0" expanded="false" />
+            <element signature="method#updateVelocity#0;class#PedestrianClient#0" expanded="false" />
+            <element signature="method#onUpdate#0;class#PedestrianClient#0" expanded="false" />
+            <element signature="method#GeneratePedestrianList#0;class#PedestrianClient#0" expanded="false" />
+            <element signature="method#sendToServer#0;class#PedestrianClient#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

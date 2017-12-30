@@ -3,74 +3,69 @@ package sample;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 
-public class PedestrianClient implements Runnable{
+public class PedestrianClient implements Runnable {
     int port = 1337;
     Integer id = null;
     Socket connection;
-    private Thread Trad;
-    ArrayList < Pedestrian > pedestrianList = new ArrayList < Pedestrian > ();
+    private Thread thread;
+    ArrayList<Pedestrian> pedestrianList = new ArrayList<>();
 
     PedestrianClient() throws IOException {
         connection = new Socket(InetAddress.getByName(null), port);
     }
 
-    public void SkickaTillServer(String message) throws IOException {
-        OutputStream outToClient;
-        DataOutputStream out;
 
-        outToClient = connection.getOutputStream();
-        out = new DataOutputStream(outToClient);
-        out.writeUTF(message);
-        System.out.println("Skickat tbx detta: " + message);
+    public void start () {
+        if (thread == null) {
+            thread = new Thread (this);
+            thread.start();
+        }
     }
 
-    private String GeneratePedestrianList() {
-        String pedestrianList = "";
-        if(this.pedestrianList.size() > 1) {
-            for (Pedestrian OnePedestrian: this.pedestrianList) {
-                if(OnePedestrian.id == this.id) {
-                    pedestrianList += OnePedestrian.id.toString() +
-                            ";" + OnePedestrian.xCenter.toString() +
-                            ";" + OnePedestrian.yCenter.toString() + "/";
+    public void run() {
+        try {
+            Listen();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void Listen() throws IOException {
+        while(true) {
+            String[] pedestriansInfoList = null;
+            while (pedestriansInfoList == null) {
+                pedestriansInfoList = this.receiveFromServer();
+                if(pedestriansInfoList != null) {
+                    this.pedestrianList.clear();
+                    this.UpdatePedestrianList(pedestriansInfoList);
+                    System.out.println("klient har tagit emot");
+                    break;
                 }
             }
+            this.updateVelocity();
+            this.onUpdate();
+            this.sendToServer(this.GeneratePedestrianList());
         }
-        else {
-            return "done";
-        }
-        return pedestrianList;
     }
 
+    public String[] receiveFromServer() throws IOException {
+        DataInputStream inData;
+        inData = new DataInputStream(connection.getInputStream());
 
-    public String[] TaEmotFranServer() throws IOException
-    {
-        DataInputStream din;
-        String[] emptyList = null;
-        String line = null;
-        din = new DataInputStream(connection.getInputStream());
-
-        while (din.available() > 0) {
-            line = din.readUTF();
+        String pedestriansInfo = null;
+        while (inData.available() > 0) {
+            pedestriansInfo = inData.readUTF();
         }
-
-        String pedestriansInfo;
-        pedestriansInfo = line;
 
         String[] pedestriansInfoList;
         if (pedestriansInfo != null) {
             if(pedestriansInfo.contains("id")) {
-                pedestriansInfo = pedestriansInfo.replace("id", "");
-                int id = Integer.parseInt(pedestriansInfo);
-                if(this.id == null)
-                    this.id = id;
-                //pedestriansInfo = null; Behövs ej?
-                System.out.println("Got ID from server:" + id);
+                setId(pedestriansInfo);
             }
             else {
                 System.out.println("Indata: " + pedestriansInfo + "end");
@@ -80,13 +75,35 @@ public class PedestrianClient implements Runnable{
                 return pedestriansInfoList;
             }
         }
+        String[] emptyList = null;
         return emptyList;
+    }
+
+    public void setId(String pedestriansInfo){
+        pedestriansInfo = pedestriansInfo.replace("id", "");
+        int id = Integer.parseInt(pedestriansInfo);
+        if(this.id == null) {
+            this.id = id;
+        }
+        System.out.println("Got ID from server:" + id);
+    }
+
+    public void UpdatePedestrianList(String[] pedestriansInfoList) throws IOException {
+        for (String line : pedestriansInfoList) {
+            String[] vars = line.split(";");
+            Integer id = Integer.parseInt(vars[0]);
+            Double x = Double.parseDouble(vars[1]);
+            Double y =  Double.parseDouble(vars[2]);
+            Pedestrian p = new Pedestrian(id, x, y);
+            this.pedestrianList.add(p);
+        }
     }
 
     public void updateVelocity() {
         for(int i = 0; i < pedestrianList.size(); i++) {
             for (int j = 0; j < pedestrianList.size(); j++) {
                 if (i != j) {
+                    //pedestrianList.get(i).defaultVelocity();
                     if(pedestrianList.get(i).id == this.id) {
                         if(j == pedestrianList.size() - 1) {
                             pedestrianList.get(i).scan(pedestrianList.get(j), true);
@@ -106,60 +123,28 @@ public class PedestrianClient implements Runnable{
         }
     }
 
-
-    public void UpdatePedestrianList(String[] pedestriansInfoList) throws IOException
-    {
-        if(pedestriansInfoList != null
-                && pedestriansInfoList.length > 0
-                && pedestriansInfoList[0] != null) {
-            this.pedestrianList.clear();
-            for (String line: pedestriansInfoList) {
-                String[] vars = line.split(";");
-                Integer id = Integer.parseInt(vars[0]);
-                Double x = Double.parseDouble(vars[1]);
-                Double y =  Double.parseDouble(vars[2]);
-                Pedestrian p = new Pedestrian(id, x, y);
-                this.pedestrianList.add(p);
-            }
-        }
-    }
-
-    public void Listen() throws IOException {
-        while(true) {
-            String[] pedestriansInfoList = null;
-            while (pedestriansInfoList == null) {
-                pedestriansInfoList = this.TaEmotFranServer();
-                if(pedestriansInfoList != null) {
-                    this.UpdatePedestrianList(pedestriansInfoList);
-                    System.out.println("klient har tagit emot");
-                    //pedestriansInfoList = null; Behövs ej?
-                    break;
+    private String GeneratePedestrianList() {
+        String pedestrianList = "";
+        if(this.pedestrianList.size() > 1) {
+            for (Pedestrian pedestrian : this.pedestrianList) {
+                if(pedestrian.id == this.id) {
+                    pedestrianList += pedestrian.id.toString() +
+                            ";" + pedestrian.xCenter.toString() +
+                            ";" + pedestrian.yCenter.toString() + "/";
                 }
             }
-            this.Calculate(this.pedestrianList);
-            this.SkickaTillServer(this.GeneratePedestrianList());
         }
+        else {
+            return "done";
+        }
+        return pedestrianList;
     }
 
-    public void Calculate(ArrayList pedestrians) { // måste ta in Arraylist utan att använda?
-        System.out.println("Calculating() . . ");
-        this.updateVelocity();
-        this.onUpdate();
-    }
+    public void sendToServer(String message) throws IOException {
+        DataOutputStream outData;
+        outData = new DataOutputStream(connection.getOutputStream());
 
-    public void run() {
-        try {
-            Listen();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void start () {
-        if (Trad == null) {
-            Trad = new Thread (this);
-            Trad.start ();
-        }
+        outData.writeUTF(message);
+        System.out.println("Skickat tbx detta: " + message);
     }
 }

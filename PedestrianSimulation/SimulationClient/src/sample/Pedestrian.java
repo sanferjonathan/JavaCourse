@@ -5,11 +5,10 @@ import java.util.List;
 
 public class Pedestrian {
 
-    public Integer r = 20;
     public Integer id;
-    public Integer close = 40, far = 200;
+    private Integer close = 40, far = 300;
     public Double xCenter, yCenter, velX = 0.0, velY = 0.0;
-    public List<Pedestrian> threats = new ArrayList<>();
+    public List<Pedestrian> neighbors = new ArrayList<>();
     private double upp = 0, down = 0, forward = 0;
 
 
@@ -20,116 +19,107 @@ public class Pedestrian {
     }
 
 
-    public void update() {
-        this.xCenter += this.velX;
-        this.yCenter += this.velY;
-    }
-
-    public BBox bBox() {
-        return new BBox(xCenter, yCenter, r, id);
-    }
-
-    public void scan(Pedestrian other, boolean value) {
-        if(distanceCheck(other) < 100) {
-            this.threats.add(other);
+    public void scan(Pedestrian neighbor, boolean value) {
+        defaultVelocity();
+        if(distanceCheck(neighbor) < 300) {
+            this.neighbors.add(neighbor);
         }
         if(value) {
-            distinguishThreat();
-            this.threats.clear();
-        }
-        else {
-            defaultVelocity();
+            sortNeighbors();
+            this.neighbors.clear();
         }
     }
-
 
     public void defaultVelocity() {
         if(this.id == 1) {
-            System.out.println("Move forward");
             velX = 4.0;
             velY = 0.0;
         }
         else if(this.id == 0) {
-            System.out.println("Move forward");
             velX = -4.0;
             velY = 0.0;
         }
     }
 
-    public void distinguishThreat() {
-        for(Pedestrian threat : threats) {
-            if(this.id != threat.id) {
-                enemyDodge(threat);
+    public double distanceCheck(Pedestrian neighbor) {
+        return Math.sqrt(Math.pow(this.xCenter - neighbor.xCenter, 2) +
+                Math.pow(this.yCenter - neighbor.yCenter, 2));
+    }
+
+    public void sortNeighbors() {
+        for(Pedestrian neighbor : neighbors) {
+            if(this.id != neighbor.id) {
+                enemyDodge(neighbor);
             }
-            else if(this.id == threat.id
-                    && this.distanceCheck(threat) <= 40) {
-                friendlyPush(threat);
+            else if(this.id == neighbor.id
+                    && this.distanceCheck(neighbor) <= 40) {
+                friendlyPush(neighbor);
             }
-            else if(this.id == threat.id
-                    && this.distanceCheck(threat) > 40) {
-                friendlyPull(threat);
+            else if(this.id == neighbor.id
+                    && this.distanceCheck(neighbor) > 100) {
+                friendlyPull(neighbor);
             }
         }
         calculateMove();
     }
 
-    public void enemyDodge(Pedestrian threat) {
-        if(threat.yCenter <= this.yCenter
-                && this.yCenter <= threat.yCenter + 40) {
-            upp += 10.0/distanceCheck(threat);
-            down += 5.0/distanceCheck(threat);
+    public void enemyDodge(Pedestrian neighbor) {
+        if(neighbor.yCenter <= this.yCenter
+                && this.yCenter <= neighbor.yCenter + 40) {
+            upp += 10.0/distanceCheck(neighbor);
+            down += 5.0/distanceCheck(neighbor);
         }
-        else if(threat.yCenter >= this.yCenter
-                && this.yCenter >= threat.yCenter - 40) {
-            down += 10.0/distanceCheck(threat);
-            upp += 5.0/distanceCheck(threat);
+        else if(neighbor.yCenter >= this.yCenter
+                && this.yCenter >= neighbor.yCenter - 40) {
+            down += 10.0/distanceCheck(neighbor);
+            upp += 5.0/distanceCheck(neighbor);
         }
         else {
-            forward += 0.1/distanceCheck(threat);
+            forward += 0.1/distanceCheck(neighbor);
         }
     }
 
-    public void friendlyPush(Pedestrian threat) {
-        if(southWest(threat, 0, close)) {
-            forward += 0.1/distanceCheck(threat);
-            upp += 5.0/distanceCheck(threat);
+    public void friendlyPush(Pedestrian neighbor) {
+        if(southWest(neighbor, 0, close)) {
+            forward += 0.1/distanceCheck(neighbor);
+            upp += 5.0/distanceCheck(neighbor);
         }
-        else if(northEast(threat, 0, close)) {
-            forward += 0.1/distanceCheck(threat);
-            down += 5.0/distanceCheck(threat);
+        else if(northEast(neighbor, 0, close)) {
+            forward += 0.1/distanceCheck(neighbor);
+            down += 5.0/distanceCheck(neighbor);
         }
-        else if(southEast(threat, 0, close)) {
-            forward += 0.1/distanceCheck(threat);
-            upp += 5.0/distanceCheck(threat);
+        else if(southEast(neighbor, 0, close)) {
+            forward += 0.1/distanceCheck(neighbor);
+            upp += 5.0/distanceCheck(neighbor);
         }
-        else if(northWest(threat, 0, close)) {
-            forward += 0.1/distanceCheck(threat);
-            down += 5.0/distanceCheck(threat);
+        else if(northWest(neighbor, 0, close)) {
+            forward += 0.1/distanceCheck(neighbor);
+            down += 5.0/distanceCheck(neighbor);
         }
         else {
-            forward += 0.1/distanceCheck(threat);
+            forward += 0.1/distanceCheck(neighbor);
         }
     }
 
-    public void friendlyPull(Pedestrian threat) {
-        if(southWest(threat, 100, far)) {
-            forward += 0.1/distanceCheck(threat);
-            down += 0.4/distanceCheck(threat);
+    public void friendlyPull(Pedestrian neighbor) {
+        if(southWest(neighbor, 100, far)) {
+            forward += 0.1/distanceCheck(neighbor);
+            down += 0.4/distanceCheck(neighbor);
         }
-        else if(southEast(threat, 100, far)) {
-            forward += 0.1/distanceCheck(threat);
-            down += 0.4/distanceCheck(threat);
+        else if(southEast(neighbor, 100, far)) {
+            forward += 0.1/distanceCheck(neighbor);
+            down += 0.4/distanceCheck(neighbor);
         }
-        if(northEast(threat, 100, far)) {
-            forward += 0.1/distanceCheck(threat);
-            upp += 0.4/distanceCheck(threat);
+        if(northEast(neighbor, 100, far)) {
+            forward += 0.1/distanceCheck(neighbor);
+            upp += 0.4/distanceCheck(neighbor);
         }
-        else if(northWest(threat, 100, far)) {
-            forward += 0.1/distanceCheck(threat);
-            upp += 0.4/distanceCheck(threat);
+        else if(northWest(neighbor, 100, far)) {
+            forward += 0.1/distanceCheck(neighbor);
+            upp += 0.4/distanceCheck(neighbor);
         }
         else {
-            forward += 0.1 / distanceCheck(threat);
+            forward += 0.1 / distanceCheck(neighbor);
         }
     }
 
@@ -166,36 +156,36 @@ public class Pedestrian {
         forward = 0;
     }
 
-    public boolean southWest(Pedestrian threat, int range1, int range2) {
-        return threat.yCenter <= this.yCenter
-                && this.yCenter + range1 <= threat.yCenter + range2
-                && threat.xCenter <= this.xCenter
-                && this.xCenter + range1 <= threat.xCenter + range2;
+    public boolean southWest(Pedestrian neighbor, int range1, int range2) {
+        return neighbor.yCenter < this.yCenter
+                && this.yCenter + range1 < neighbor.yCenter + range2
+                && neighbor.xCenter < this.xCenter
+                && this.xCenter + range1 < neighbor.xCenter + range2;
     }
 
-    public boolean northEast(Pedestrian threat, int range1, int range2) {
-        return threat.yCenter >= this.yCenter
-                && this.yCenter - range1 >= threat.yCenter - range2
-                && threat.xCenter >= this.xCenter
-                && this.xCenter - range1 >= threat.xCenter - range2;
+    public boolean northEast(Pedestrian neighbor, int range1, int range2) {
+        return neighbor.yCenter > this.yCenter
+                && this.yCenter - range1 > neighbor.yCenter - range2
+                && neighbor.xCenter > this.xCenter
+                && this.xCenter - range1 > neighbor.xCenter - range2;
     }
 
-    public boolean southEast(Pedestrian threat, int range1, int range2) {
-        return threat.yCenter <= this.yCenter
-                && this.yCenter + range1 <= threat.yCenter + range2
-                && threat.xCenter >= this.xCenter
-                && this.xCenter - range1 >= threat.xCenter - range2;
+    public boolean southEast(Pedestrian neighbor, int range1, int range2) {
+        return neighbor.yCenter < this.yCenter
+                && this.yCenter + range1 < neighbor.yCenter + range2
+                && neighbor.xCenter > this.xCenter
+                && this.xCenter - range1 > neighbor.xCenter - range2;
     }
 
-    public boolean northWest(Pedestrian threat, int range1, int range2) {
-        return threat.yCenter >= this.yCenter
-                && this.yCenter - range1 >= threat.yCenter - range2
-                && threat.xCenter <= this.xCenter
-                && this.xCenter + range1 <= threat.xCenter + range2;
+    public boolean northWest(Pedestrian neighbor, int range1, int range2) {
+        return neighbor.yCenter > this.yCenter
+                && this.yCenter - range1 > neighbor.yCenter - range2
+                && neighbor.xCenter < this.xCenter
+                && this.xCenter + range1 < neighbor.xCenter + range2;
     }
 
-    public double distanceCheck(Pedestrian threat) {
-        return Math.sqrt(Math.pow(this.xCenter - threat.xCenter, 2) +
-                Math.pow(this.yCenter - threat.yCenter, 2));
+    public void update() {
+        this.xCenter += this.velX;
+        this.yCenter += this.velY;
     }
 }

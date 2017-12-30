@@ -5,8 +5,8 @@ import java.io.*;
 
 public class Main {
     public static void main(String [] args) throws IOException {
-        PedestrianClient clientThread = new PedestrianClient();
-        clientThread.start();
+        PedestrianClient pedestrianClient = new PedestrianClient();
+        pedestrianClient.start();
     }
 }
 
