@@ -16,7 +16,7 @@ public class GUI extends Application {
     private GraphicsContext g;
     private Pane root;
     private Canvas canvas;
-    public List<Pedestrian> pedestrians = null;
+    private List<Pedestrian> pedestrians = null;
 
     private AnimationTimer timer = new AnimationTimer() {
         @Override
@@ -26,11 +26,10 @@ public class GUI extends Application {
     };
 
     public static void initialize() {
-        Server ServerTrad;
-        ServerTrad = new Server("ServerTrad");
-        ServerTrad.start();
+        Server serverThread;
+        serverThread = new Server("serverThread");
+        serverThread.start();
     }
-
 
     private Parent createContent() {
         root = new Pane();
@@ -38,9 +37,7 @@ public class GUI extends Application {
         g = canvas.getGraphicsContext2D();
 
         root.getChildren().add(canvas);
-
         render();
-
         return root;
     }
 
@@ -51,15 +48,11 @@ public class GUI extends Application {
     private void render() {
         g.clearRect(0, 0, Main.getCanvasX(), Main.getCanvasY());
 
-        int inc = 0;
         synchronized(this.pedestrians) {
             for(Pedestrian pedestrian : this.pedestrians){
                 pedestrian.drawCenteredCircle(g, pedestrian);
-                inc++;
             }
         }
-        System.out.println("Rendered peds:" + inc + " List size:" + this.pedestrians.size());
-
         g.strokeText(Main.getCollisionCounter().toString(), Main.getCanvasX()-60.0, 50);
         g.strokeText("Collision: ", Main.getCanvasX()-110.0, 50);
         g.strokeText(Main.getGoalCounter() - Main.getCollisionCounter() + " / "

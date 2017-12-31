@@ -60,10 +60,10 @@ public class Pedestrian {
         if (value) {
             distinguishThreat();
             this.threats.clear();
-        } else {
+        }
+        else {
             defaultVelocity();
         }
-        System.out.println(this.threats.size());
     }
 
     public void defaultVelocity() {

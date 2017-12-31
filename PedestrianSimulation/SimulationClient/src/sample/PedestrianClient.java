@@ -28,34 +28,32 @@ public class PedestrianClient implements Runnable {
 
     public void run() {
         try {
-            Listen();
+            listen();
         }
         catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void Listen() throws IOException {
+    public void listen() throws IOException {
         while(true) {
             String[] pedestriansInfoList = null;
             while (pedestriansInfoList == null) {
                 pedestriansInfoList = this.receiveFromServer();
                 if(pedestriansInfoList != null) {
                     this.pedestrianList.clear();
-                    this.UpdatePedestrianList(pedestriansInfoList);
-                    System.out.println("klient har tagit emot");
+                    this.updatePedestrianList(pedestriansInfoList);
                     break;
                 }
             }
             this.updateVelocity();
             this.onUpdate();
-            this.sendToServer(this.GeneratePedestrianList());
+            this.sendToServer(this.generatePedestrianList());
         }
     }
 
     public String[] receiveFromServer() throws IOException {
-        DataInputStream inData;
-        inData = new DataInputStream(connection.getInputStream());
+        DataInputStream inData = new DataInputStream(connection.getInputStream());
 
         String pedestriansInfo = null;
         while (inData.available() > 0) {
@@ -86,32 +84,28 @@ public class PedestrianClient implements Runnable {
         if(this.id == null) {
             this.id = id;
         }
-        System.out.println("Got ID from server:" + id);
     }
 
-    public void UpdatePedestrianList(String[] pedestriansInfoList) throws IOException {
-        for (String line : pedestriansInfoList) {
-            String[] vars = line.split(";");
-            Integer id = Integer.parseInt(vars[0]);
-            Double x = Double.parseDouble(vars[1]);
-            Double y =  Double.parseDouble(vars[2]);
-            Pedestrian p = new Pedestrian(id, x, y);
-            this.pedestrianList.add(p);
+    public void updatePedestrianList(String[] pedestriansInfoList) throws IOException {
+        for (String section : pedestriansInfoList) {
+            String[] elements = section.split(";");
+            Integer id = Integer.parseInt(elements[0]);
+            Double x = Double.parseDouble(elements[1]);
+            Double y =  Double.parseDouble(elements[2]);
+            Pedestrian pedestrian = new Pedestrian(id, x, y);
+            this.pedestrianList.add(pedestrian);
         }
     }
 
     public void updateVelocity() {
         for(int i = 0; i < pedestrianList.size(); i++) {
             for (int j = 0; j < pedestrianList.size(); j++) {
-                if (i != j) {
-                    //pedestrianList.get(i).defaultVelocity();
-                    if(pedestrianList.get(i).id == this.id) {
-                        if(j == pedestrianList.size() - 1) {
-                            pedestrianList.get(i).scan(pedestrianList.get(j), true);
-                        }
-                        else {
-                            pedestrianList.get(i).scan(pedestrianList.get(j), false);
-                        }
+                if(pedestrianList.get(i).id == this.id && i != j) {
+                    if(j == pedestrianList.size() - 1) {
+                        pedestrianList.get(i).scan(pedestrianList.get(j), true);
+                    }
+                    else {
+                        pedestrianList.get(i).scan(pedestrianList.get(j), false);
                     }
                 }
             }
@@ -124,7 +118,7 @@ public class PedestrianClient implements Runnable {
         }
     }
 
-    private String GeneratePedestrianList() {
+    private String generatePedestrianList() {
         String pedestrianList = "";
         if(this.pedestrianList.size() > 1) {
             for (Pedestrian pedestrian : this.pedestrianList) {
@@ -142,9 +136,7 @@ public class PedestrianClient implements Runnable {
     }
 
     public void sendToServer(String message) throws IOException {
-        DataOutputStream outData;
-        outData = new DataOutputStream(connection.getOutputStream());
-
+        DataOutputStream outData = new DataOutputStream(connection.getOutputStream());
         outData.writeUTF(message);
     }
 }

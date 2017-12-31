@@ -20,7 +20,7 @@ public class Main extends Application {
     private final int radius = 20;
     private final double blueX = 10, redX = 1190;
     private double blueRandY, redRandY;
-    private Integer collisionCounter = 0, goalCounter = 0, updateCounter = 0, spawnRate = 30;
+    private Integer collisionCounter = 0, goalCounter = 0, updateCounter = 0, spawnRate = 20;
     private GraphicsContext g;
     private Pane root;
     private Canvas canvas;
@@ -117,13 +117,11 @@ public class Main extends Application {
     public void collisionCheck() {
         for (int i = 0; i < pedestrians.size(); i++) {
             for (int j = 0; j < pedestrians.size(); j++) {
-                if (i != j) {
-                    if (pedestrians.get(j).isAlive()) {
-                        if (pedestrians.get(i).isColliding(pedestrians.get(j))) {
-                            pedestrians.get(i).kill();
-                            pedestrians.get(j).kill();
-                            collisionCounter++;
-                        }
+                if (pedestrians.get(j).isAlive() && i != j) {
+                    if (pedestrians.get(i).isColliding(pedestrians.get(j))) {
+                        pedestrians.get(i).kill();
+                        pedestrians.get(j).kill();
+                        collisionCounter++;
                     }
                 }
             }
