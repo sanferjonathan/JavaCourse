@@ -8,11 +8,11 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class PedestrianClient implements Runnable {
-    int port = 1337;
-    Integer id = null;
-    Socket connection;
+    private int port = 420;
+    private Integer id = null;
+    private Socket connection;
     private Thread thread;
-    ArrayList<Pedestrian> pedestrianList = new ArrayList<>();
+    private ArrayList<Pedestrian> pedestrianList = new ArrayList<>();
 
     PedestrianClient() throws IOException {
         connection = new Socket(InetAddress.getByName(null), port);
@@ -100,7 +100,7 @@ public class PedestrianClient implements Runnable {
     public void updateVelocity() {
         for(int i = 0; i < pedestrianList.size(); i++) {
             for (int j = 0; j < pedestrianList.size(); j++) {
-                if(pedestrianList.get(i).id == this.id && i != j) {
+                if(pedestrianList.get(i).getId() == this.id && i != j) {
                     if(j == pedestrianList.size() - 1) {
                         pedestrianList.get(i).scan(pedestrianList.get(j), true);
                     }
@@ -122,10 +122,10 @@ public class PedestrianClient implements Runnable {
         String pedestrianList = "";
         if(this.pedestrianList.size() > 1) {
             for (Pedestrian pedestrian : this.pedestrianList) {
-                if(pedestrian.id == this.id) {
-                    pedestrianList += pedestrian.id.toString() +
-                            ";" + pedestrian.xCenter.toString() +
-                            ";" + pedestrian.yCenter.toString() + "/";
+                if(pedestrian.getId() == this.id) {
+                    pedestrianList += pedestrian.getId().toString() +
+                            ";" + pedestrian.getXCenter().toString() +
+                            ";" + pedestrian.getYCenter().toString() + "/";
                 }
             }
         }

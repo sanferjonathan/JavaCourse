@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Pedestrian {
 
-    public Integer id;
+    private Integer id;
     private Integer close = 40, far = 300;
-    public Double xCenter, yCenter, velX = 0.0, velY = 0.0;
-    public List<Pedestrian> neighbors = new ArrayList<>();
+    private Double xCenter, yCenter, velX = 0.0, velY = 0.0;
+    private List<Pedestrian> neighbors = new ArrayList<>();
     private double upp = 0, down = 0, forward = 0;
 
 
@@ -187,5 +187,29 @@ public class Pedestrian {
     public void update() {
         this.xCenter += this.velX;
         this.yCenter += this.velY;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Double getXCenter() {
+        return xCenter;
+    }
+
+    public Double getYCenter() {
+        return yCenter;
+    }
+
+    public Double getVelX() {
+        return velX;
+    }
+
+    public Double getVelY() {
+        return velY;
+    }
+
+    public List<Pedestrian> getNeighbors() {
+        return neighbors;
     }
 }

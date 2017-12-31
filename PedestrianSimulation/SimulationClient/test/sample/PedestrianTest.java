@@ -31,15 +31,15 @@ public class PedestrianTest {
 
     @Test
     public void scan() {
-        assertEquals(0.0, pedestrian1.velX, 0.001);
+        assertEquals(0.0, pedestrian1.getVelX(), 0.001);
         pedestrian1.scan(pedestrian2, false);
-        assertEquals(4.0, pedestrian1.velX, 0.001);
+        assertEquals(4.0, pedestrian1.getVelX(), 0.001);
         pedestrian1.scan(pedestrian3, false);
         pedestrian1.scan(pedestrian6, false);
-        assertEquals(2, pedestrian1.neighbors.size());
-        assertEquals(4.0, pedestrian1.velX, 0.001);
+        assertEquals(2, pedestrian1.getNeighbors().size());
+        assertEquals(4.0, pedestrian1.getVelX(), 0.001);
         pedestrian1.scan(pedestrian4, true);
-        assertEquals(0, pedestrian1.neighbors.size());
+        assertEquals(0, pedestrian1.getNeighbors().size());
     }
 
     @Test
@@ -53,82 +53,82 @@ public class PedestrianTest {
     @Test
     public void defaultVelocity() {
         pedestrian1.defaultVelocity();
-        assertEquals(4.0, pedestrian1.velX, 0.001);
-        assertEquals(0.0, pedestrian1.velY, 0.001);
+        assertEquals(4.0, pedestrian1.getVelX(), 0.001);
+        assertEquals(0.0, pedestrian1.getVelY(), 0.001);
         pedestrian2.defaultVelocity();
-        assertEquals(-4.0, pedestrian2.velX, 0.001);
-        assertEquals(0.0, pedestrian1.velY, 0.001);
+        assertEquals(-4.0, pedestrian2.getVelX(), 0.001);
+        assertEquals(0.0, pedestrian1.getVelY(), 0.001);
     }
 
     @Test
     public void enemyDodge() {
         pedestrian1.enemyDodge(pedestrian3);
         pedestrian1.calculateMove();
-        assertEquals(2.0, pedestrian1.velX, 0.001);
-        assertEquals(-2.0, pedestrian1.velY, 0.001);
+        assertEquals(2.0, pedestrian1.getVelX(), 0.001);
+        assertEquals(-2.0, pedestrian1.getVelY(), 0.001);
 
         pedestrian1.enemyDodge(pedestrian5);
         pedestrian1.calculateMove();
-        assertEquals(2.0, pedestrian1.velX, 0.001);
-        assertEquals(2.0, pedestrian1.velY, 0.001);
+        assertEquals(2.0, pedestrian1.getVelX(), 0.001);
+        assertEquals(2.0, pedestrian1.getVelY(), 0.001);
     }
 
     @Test
     public void friendlyPush() {
         pedestrian1.friendlyPush(pedestrian3);
         pedestrian1.calculateMove();
-        assertEquals(4.0, pedestrian1.velX, 0.001);
-        assertEquals(0.0, pedestrian1.velY, 0.001);
+        assertEquals(4.0, pedestrian1.getVelX(), 0.001);
+        assertEquals(0.0, pedestrian1.getVelY(), 0.001);
 
         pedestrian1.friendlyPush(pedestrian5);
         pedestrian1.calculateMove();
-        assertEquals(2.0, pedestrian1.velX, 0.001);
-        assertEquals(2.0, pedestrian1.velY, 0.001);
+        assertEquals(2.0, pedestrian1.getVelX(), 0.001);
+        assertEquals(2.0, pedestrian1.getVelY(), 0.001);
 
         pedestrian1.friendlyPush(pedestrian7);
         pedestrian1.calculateMove();
-        assertEquals(4.0, pedestrian1.velX, 0.001);
-        assertEquals(0.0, pedestrian1.velY, 0.001);
+        assertEquals(4.0, pedestrian1.getVelX(), 0.001);
+        assertEquals(0.0, pedestrian1.getVelY(), 0.001);
 
         pedestrian1.friendlyPush(pedestrian9);
         pedestrian1.calculateMove();
-        assertEquals(2.0, pedestrian1.velX, 0.001);
-        assertEquals(-2.0, pedestrian1.velY, 0.001);
+        assertEquals(2.0, pedestrian1.getVelX(), 0.001);
+        assertEquals(-2.0, pedestrian1.getVelY(), 0.001);
     }
 
     @Test
     public void friendlyPull() {
         pedestrian1.friendlyPull(pedestrian8);
         pedestrian1.calculateMove();
-        assertEquals(2.0, pedestrian1.velX, 0.001);
-        assertEquals(2.0, pedestrian1.velY, 0.001);
+        assertEquals(2.0, pedestrian1.getVelX(), 0.001);
+        assertEquals(2.0, pedestrian1.getVelY(), 0.001);
 
         pedestrian1.friendlyPull(pedestrian5);
         pedestrian1.calculateMove();
-        assertEquals(2.0, pedestrian1.velX, 0.001);
-        assertEquals(-2.0, pedestrian1.velY, 0.001);
+        assertEquals(2.0, pedestrian1.getVelX(), 0.001);
+        assertEquals(-2.0, pedestrian1.getVelY(), 0.001);
 
         pedestrian1.friendlyPull(pedestrian7);
-        pedestrian1.calculateMove(); //fucked
-        assertEquals(2.0, pedestrian1.velX, 0.001);
-        assertEquals(2.0, pedestrian1.velY, 0.001);
+        pedestrian1.calculateMove();
+        assertEquals(2.0, pedestrian1.getVelX(), 0.001);
+        assertEquals(2.0, pedestrian1.getVelY(), 0.001);
 
         pedestrian1.friendlyPush(pedestrian6);
         pedestrian1.calculateMove();
-        assertEquals(4.0, pedestrian1.velX, 0.001);
-        assertEquals(0.0, pedestrian1.velY, 0.001);
+        assertEquals(4.0, pedestrian1.getVelX(), 0.001);
+        assertEquals(0.0, pedestrian1.getVelY(), 0.001);
     }
 
     @Test
     public void update() {
         pedestrian1.defaultVelocity();
         pedestrian1.update();
-        assertEquals(24.0, pedestrian1.xCenter, 0.001);
+        assertEquals(24.0, pedestrian1.getXCenter(), 0.001);
 
         pedestrian1.friendlyPush(pedestrian5);
         pedestrian1.calculateMove();
         pedestrian1.update();
-        assertEquals(26.0, pedestrian1.xCenter, 0.001);
-        assertEquals(52.0, pedestrian1.yCenter, 0.001);
+        assertEquals(26.0, pedestrian1.getXCenter(), 0.001);
+        assertEquals(52.0, pedestrian1.getYCenter(), 0.001);
     }
 }

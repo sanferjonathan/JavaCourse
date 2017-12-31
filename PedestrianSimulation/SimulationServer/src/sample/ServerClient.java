@@ -10,15 +10,13 @@ import java.util.List;
 
 public class ServerClient implements Runnable {
 
-    String name;
-    Integer id;
-    DataInputStream inData;
-    DataOutputStream outData;
-    List<Pedestrian> pedestrianList = Collections
+    private Integer id;
+    private DataInputStream inData;
+    private DataOutputStream outData;
+    private List<Pedestrian> pedestrianList = Collections
             .synchronizedList(new ArrayList<Pedestrian>());
 
-    public ServerClient(Socket connection, String name, int id) throws IOException {
-        this.name = name;
+    public ServerClient(Socket connection, int id) throws IOException {
         this.id = id;
 
         this.inData = new DataInputStream(connection.getInputStream());
@@ -104,5 +102,9 @@ public class ServerClient implements Runnable {
             return false;
         }
         return true;
+    }
+
+    public List<Pedestrian> getPedestrianList(){
+        return pedestrianList;
     }
 }

@@ -45,7 +45,7 @@ public class Server implements Runnable {
     }
 
     public void Listen() throws IOException, InterruptedException {
-        this.server = new ServerSocket(1337,5);
+        this.server = new ServerSocket(420,5);
         this.server.setReuseAddress(true);
 
         this.waitingForConnections();
@@ -70,8 +70,7 @@ public class Server implements Runnable {
         while(this.numberOfClients < 2) {
             this.connection = server.accept();
             this.numberOfClients++;
-            String name = "TradNr: " + numberOfClients.toString();
-            ServerClient client = new ServerClient(connection, name, this.numberOfClients - 1);
+            ServerClient client = new ServerClient(connection, this.numberOfClients - 1);
             new Thread(client).start();
             this.clientList.add(client);
         }
@@ -90,8 +89,10 @@ public class Server implements Runnable {
             synchronized(this.pedestrianList) {
                 Iterator<Pedestrian> iterator = this.pedestrianList.iterator();
                 while (iterator.hasNext()) {
-                    Pedestrian p = iterator.next();
-                    pedestrianList += p.id.toString() + ";" + p.xCenter.toString() + ";" + p.yCenter.toString() + "/";
+                    Pedestrian pedestrian = iterator.next();
+                    pedestrianList += pedestrian.getId().toString() +
+                            ";" + pedestrian.getXCenterToString() +
+                            ";" + pedestrian.getYCenterToString() + "/";
                 }
             }
         }
@@ -103,23 +104,23 @@ public class Server implements Runnable {
         while(numberOfAnswers < this.numberOfClients) {
             numberOfAnswers = 0;
             for(ServerClient client : this.clientList) {
-                if(!client.pedestrianList.isEmpty()) {
+                if(!client.getPedestrianList().isEmpty()) {
                     numberOfAnswers++;
                 }
             }
         }
     }
-    //clear the global list and att pedestrians with new coordinates from ServerClients list
+    //clear the global list and add pedestrians with new coordinates from ServerClients list
     private void updateData() throws IOException, InterruptedException {
         Thread.sleep(10);
         this.pedestrianList.clear();
         for(ServerClient client : this.clientList) {
-            synchronized(client.pedestrianList) {
-                if(!client.pedestrianList.isEmpty()) {
-                    for(Pedestrian pedestrian : client.pedestrianList) {
+            synchronized(client.getPedestrianList()) {
+                if(!client.getPedestrianList().isEmpty()) {
+                    for(Pedestrian pedestrian : client.getPedestrianList()) {
                         Main.getPedestrianList().add(
-                                new Pedestrian(pedestrian.id,
-                                pedestrian.xCenter, pedestrian.yCenter));
+                                new Pedestrian(pedestrian.getId(),
+                                pedestrian.getXCenter(), pedestrian.getYCenter()));
                     }
                 }
             }
@@ -144,7 +145,7 @@ public class Server implements Runnable {
         synchronized(this.pedestrianList) {
             for(int i = 0; i < this.pedestrianList.size(); i++) {
                 for(int j = 0; j < this.pedestrianList.size(); j++) {
-                    if(this.pedestrianList.get(j).alive && i != j) {
+                    if(this.pedestrianList.get(j).isAlive() && i != j) {
                         if (this.pedestrianList.get(i)
                                 .isColliding(this.pedestrianList.get(j))) {
                             this.pedestrianList.get(i).kill();
@@ -161,7 +162,7 @@ public class Server implements Runnable {
         synchronized(this.pedestrianList) {
             Iterator<Pedestrian> iterator = this.pedestrianList.iterator();
             while (iterator.hasNext()){
-                if(!iterator.next().alive) {
+                if(!iterator.next().isAlive()) {
                     iterator.remove();
                 }
             }
@@ -202,7 +203,7 @@ public class Server implements Runnable {
             if(this.spawnedBluePedestrians <= Main.getMaxBluePedestrians()
                     && this.spawnedBluePedestrians <= this.spawnedRedPedestrians) {
                 synchronized(this.pedestrianList) {
-                    this.pedestrianList.add(new Pedestrian(p1.id, p1.xCenter, p1.yCenter));
+                    this.pedestrianList.add(new Pedestrian(p1.getId(), p1.getXCenter(), p1.getYCenter()));
                     this.spawnedBluePedestrians++;
                 }
             }
@@ -212,7 +213,7 @@ public class Server implements Runnable {
             if(this.spawnedRedPedestrians <= Main.getMaxRedPedestrians()
                     && this.spawnedRedPedestrians <= this.spawnedBluePedestrians) {
                 synchronized(this.pedestrianList) {
-                    this.pedestrianList.add(new Pedestrian(p2.id, p2.xCenter, p2.yCenter));
+                    this.pedestrianList.add(new Pedestrian(p2.getId(), p2.getXCenter(), p2.getYCenter()));
                     this.spawnedRedPedestrians++;
                 }
             }

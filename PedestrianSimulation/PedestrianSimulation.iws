@@ -10,13 +10,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.60722893">
+    <splitter split-orientation="horizontal" split-proportion="0.5385542">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/SimulationServer/src/sample/Main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="320">
+                <state relative-caret-position="-416">
                   <caret line="18" column="48" lean-forward="false" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
                   <folding>
                     <element signature="e#743#744#0" expanded="true" />
@@ -55,7 +55,7 @@
           <file leaf-file-name="GUI.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/SimulationServer/src/sample/GUI.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-76">
+                <state relative-caret-position="860">
                   <caret line="52" column="40" lean-forward="false" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
                   <folding>
                     <element signature="e#555#674#0" expanded="true" />
@@ -70,29 +70,22 @@
           <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/SimulationServer/src/sample/Server.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="320">
-                  <caret line="72" column="66" lean-forward="true" selection-start-line="72" selection-start-column="66" selection-end-line="72" selection-end-column="66" />
+                <state relative-caret-position="1820">
+                  <caret line="94" column="65" lean-forward="false" selection-start-line="94" selection-start-column="65" selection-end-line="94" selection-end-column="65" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ServerClient.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ServerClient.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/SimulationServer/src/sample/ServerClient.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="600">
-                  <caret line="36" column="22" lean-forward="false" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="PedestrianClient.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/SimulationClient/src/sample/PedestrianClient.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2640">
-                  <caret line="137" column="65" lean-forward="true" selection-start-line="137" selection-start-column="65" selection-end-line="137" selection-end-column="65" />
-                  <folding />
+                <state relative-caret-position="2020">
+                  <caret line="107" column="30" lean-forward="false" selection-start-line="107" selection-start-column="30" selection-end-line="107" selection-end-column="30" />
+                  <folding>
+                    <element signature="e#3378#3379#0" expanded="true" />
+                    <element signature="e#3415#3416#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -100,14 +93,34 @@
           <file leaf-file-name="Pedestrian.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/SimulationServer/src/sample/Pedestrian.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="480">
-                  <caret line="27" column="5" lean-forward="false" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+                <state relative-caret-position="1180">
+                  <caret line="62" column="5" lean-forward="false" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
                   <folding>
-                    <element signature="e#491#492#0" expanded="true" />
-                    <element signature="e#521#522#0" expanded="true" />
-                    <element signature="e#547#548#0" expanded="true" />
-                    <element signature="e#581#582#0" expanded="true" />
+                    <element signature="e#1004#1005#0" expanded="true" />
+                    <element signature="e#1032#1033#0" expanded="true" />
+                    <element signature="e#1062#1063#0" expanded="true" />
+                    <element signature="e#1087#1088#0" expanded="true" />
+                    <element signature="e#1121#1122#0" expanded="true" />
+                    <element signature="e#1151#1152#0" expanded="true" />
+                    <element signature="e#1185#1186#0" expanded="true" />
+                    <element signature="e#1215#1216#0" expanded="true" />
+                    <element signature="e#1257#1258#0" expanded="true" />
+                    <element signature="e#1298#1299#0" expanded="true" />
+                    <element signature="e#1340#1341#0" expanded="true" />
+                    <element signature="e#1381#1382#0" expanded="true" />
+                    <element signature="e#1407#1408#0" expanded="true" />
+                    <element signature="e#1441#1442#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PedestrianClient.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/SimulationClient/src/sample/PedestrianClient.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2440">
+                  <caret line="127" column="57" lean-forward="false" selection-start-line="127" selection-start-column="57" selection-end-line="127" selection-end-column="57" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -119,8 +132,8 @@
           <file leaf-file-name="PedestrianTest.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/SimulationClient/test/sample/PedestrianTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="8">
-                  <caret line="19" column="42" lean-forward="true" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+                <state relative-caret-position="432">
+                  <caret line="41" column="50" lean-forward="false" selection-start-line="41" selection-start-column="50" selection-end-line="41" selection-end-column="50" />
                   <folding />
                 </state>
               </provider>
@@ -152,14 +165,14 @@
       <list>
         <option value="$PROJECT_DIR$/SimulationClient/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/SimulationServer/src/sample/BBox.java" />
-        <option value="$PROJECT_DIR$/SimulationServer/src/sample/Pedestrian.java" />
         <option value="$PROJECT_DIR$/SimulationServer/src/sample/GUI.java" />
         <option value="$PROJECT_DIR$/SimulationServer/src/sample/Main.java" />
+        <option value="$PROJECT_DIR$/SimulationServer/src/sample/ServerClient.java" />
+        <option value="$PROJECT_DIR$/SimulationClient/src/sample/PedestrianClient.java" />
         <option value="$PROJECT_DIR$/SimulationClient/src/sample/Pedestrian.java" />
         <option value="$PROJECT_DIR$/SimulationClient/test/sample/PedestrianTest.java" />
         <option value="$PROJECT_DIR$/SimulationServer/src/sample/Server.java" />
-        <option value="$PROJECT_DIR$/SimulationServer/src/sample/ServerClient.java" />
-        <option value="$PROJECT_DIR$/SimulationClient/src/sample/PedestrianClient.java" />
+        <option value="$PROJECT_DIR$/SimulationServer/src/sample/Pedestrian.java" />
       </list>
     </option>
   </component>
@@ -493,8 +506,8 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.PedestrianTest.scan" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.PedestrianTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.PedestrianTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.PedestrianTest.scan" />
         <item index="2" class="java.lang.String" itemvalue="JUnit.PedestrianTest.friendlyPush" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.PedestrianTest.distanceCheck" />
       </list>
@@ -520,18 +533,18 @@
       <updated>1514506967713</updated>
       <workItem from="1514506971407" duration="2419000" />
       <workItem from="1514516752587" duration="43133000" />
-      <workItem from="1514678922139" duration="14579000" />
+      <workItem from="1514678922139" duration="19957000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PedestrianTest - 2017.12.30 at 00h 28m 57s.xml">
-      <configuration name="PedestrianTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PedestrianTest - 2017.12.30 at 00h 29m 14s.xml">
-      <configuration name="PedestrianTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="PedestrianTest - 2017.12.30 at 01h 13m 30s.xml">
+      <configuration name="PedestrianTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PedestrianTest - 2017.12.31 at 06h 13m 57s.xml">
+      <configuration name="PedestrianTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PedestrianTest - 2017.12.31 at 06h 17m 21s.xml">
       <configuration name="PedestrianTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="PedestrianTest_friendlyPush - 2017.12.30 at 00h 00m 20s.xml">
@@ -557,22 +570,21 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60131000" />
+    <option name="totallyTimeSpent" value="65509000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49583334" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49375" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24496289" sideWeight="0.5083333" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24496289" sideWeight="0.5104167" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24496289" sideWeight="0.49166667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24496289" sideWeight="0.48958334" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -646,7 +658,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
           <caret line="39" column="36" lean-forward="false" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
-          <folding />
+          <folding>
+            <element signature="e#3378#3379#0" expanded="true" />
+            <element signature="e#3415#3416#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -663,10 +678,20 @@
         <state relative-caret-position="400">
           <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
           <folding>
-            <element signature="e#491#492#0" expanded="true" />
-            <element signature="e#521#522#0" expanded="true" />
-            <element signature="e#547#548#0" expanded="true" />
-            <element signature="e#581#582#0" expanded="true" />
+            <element signature="e#1004#1005#0" expanded="true" />
+            <element signature="e#1032#1033#0" expanded="true" />
+            <element signature="e#1062#1063#0" expanded="true" />
+            <element signature="e#1087#1088#0" expanded="true" />
+            <element signature="e#1121#1122#0" expanded="true" />
+            <element signature="e#1151#1152#0" expanded="true" />
+            <element signature="e#1185#1186#0" expanded="true" />
+            <element signature="e#1215#1216#0" expanded="true" />
+            <element signature="e#1257#1258#0" expanded="true" />
+            <element signature="e#1298#1299#0" expanded="true" />
+            <element signature="e#1340#1341#0" expanded="true" />
+            <element signature="e#1381#1382#0" expanded="true" />
+            <element signature="e#1407#1408#0" expanded="true" />
+            <element signature="e#1441#1442#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -725,31 +750,101 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SimulationServer/src/sample/BBox.java" />
     <entry file="file://$PROJECT_DIR$/SimulationServer/tests/sample/GUITest.java" />
+    <entry file="file://$PROJECT_DIR$/SimulationClient/test/sample/PedestrianTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="41" column="50" lean-forward="false" selection-start-line="41" selection-start-column="50" selection-end-line="41" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SimulationClient/src/sample/Pedestrian.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="17" column="34" lean-forward="false" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+        <state relative-caret-position="4220">
+          <caret line="212" column="8" lean-forward="false" selection-start-line="212" selection-start-column="8" selection-end-line="212" selection-end-column="25" />
           <folding>
-            <element signature="method#scan#0;class#Pedestrian#0" expanded="false" />
-            <element signature="method#defaultVelocity#0;class#Pedestrian#0" expanded="false" />
-            <element signature="method#distanceCheck#0;class#Pedestrian#0" expanded="false" />
-            <element signature="method#sortNeighbors#0;class#Pedestrian#0" expanded="false" />
-            <element signature="method#enemyDodge#0;class#Pedestrian#0" expanded="false" />
-            <element signature="method#friendlyPush#0;class#Pedestrian#0" expanded="false" />
-            <element signature="method#friendlyPull#0;class#Pedestrian#0" expanded="false" />
-            <element signature="method#calculateMove#0;class#Pedestrian#0" expanded="false" />
-            <element signature="method#southWest#0;class#Pedestrian#0" expanded="false" />
-            <element signature="method#northEast#0;class#Pedestrian#0" expanded="false" />
-            <element signature="method#southEast#0;class#Pedestrian#0" expanded="false" />
-            <element signature="method#northWest#0;class#Pedestrian#0" expanded="false" />
-            <element signature="method#update#0;class#Pedestrian#0" expanded="false" />
+            <element signature="e#5979#5980#0" expanded="true" />
+            <element signature="e#6004#6005#0" expanded="true" />
+            <element signature="e#6038#6039#0" expanded="true" />
+            <element signature="e#6068#6069#0" expanded="true" />
+            <element signature="e#6102#6103#0" expanded="true" />
+            <element signature="e#6132#6133#0" expanded="true" />
+            <element signature="e#6163#6164#0" expanded="true" />
+            <element signature="e#6190#6191#0" expanded="true" />
+            <element signature="e#6221#6222#0" expanded="true" />
+            <element signature="e#6248#6249#0" expanded="true" />
+            <element signature="e#6294#6295#0" expanded="true" />
+            <element signature="e#6326#6327#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimulationClient/src/sample/PedestrianClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2440">
+          <caret line="127" column="57" lean-forward="false" selection-start-line="127" selection-start-column="57" selection-end-line="127" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimulationServer/src/sample/Pedestrian.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1180">
+          <caret line="62" column="5" lean-forward="false" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+          <folding>
+            <element signature="e#1004#1005#0" expanded="true" />
+            <element signature="e#1032#1033#0" expanded="true" />
+            <element signature="e#1062#1063#0" expanded="true" />
+            <element signature="e#1087#1088#0" expanded="true" />
+            <element signature="e#1121#1122#0" expanded="true" />
+            <element signature="e#1151#1152#0" expanded="true" />
+            <element signature="e#1185#1186#0" expanded="true" />
+            <element signature="e#1215#1216#0" expanded="true" />
+            <element signature="e#1257#1258#0" expanded="true" />
+            <element signature="e#1298#1299#0" expanded="true" />
+            <element signature="e#1340#1341#0" expanded="true" />
+            <element signature="e#1381#1382#0" expanded="true" />
+            <element signature="e#1407#1408#0" expanded="true" />
+            <element signature="e#1441#1442#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimulationServer/src/sample/ServerClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2020">
+          <caret line="107" column="30" lean-forward="false" selection-start-line="107" selection-start-column="30" selection-end-line="107" selection-end-column="30" />
+          <folding>
+            <element signature="e#3378#3379#0" expanded="true" />
+            <element signature="e#3415#3416#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimulationServer/src/sample/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1820">
+          <caret line="94" column="65" lean-forward="false" selection-start-line="94" selection-start-column="65" selection-end-line="94" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimulationServer/src/sample/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="860">
+          <caret line="52" column="40" lean-forward="false" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
+          <folding>
+            <element signature="e#555#674#0" expanded="true" />
+            <element signature="e#673#674#0" expanded="true" />
+            <element signature="e#1120#1121#0" expanded="true" />
+            <element signature="e#1144#1145#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SimulationServer/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
+        <state relative-caret-position="-416">
           <caret line="18" column="48" lean-forward="false" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
           <folding>
             <element signature="e#743#744#0" expanded="true" />
@@ -781,64 +876,6 @@
             <element signature="e#1899#1900#0" expanded="true" />
             <element signature="e#1928#1929#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimulationServer/src/sample/GUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-76">
-          <caret line="52" column="40" lean-forward="false" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
-          <folding>
-            <element signature="e#555#674#0" expanded="true" />
-            <element signature="e#673#674#0" expanded="true" />
-            <element signature="e#1120#1121#0" expanded="true" />
-            <element signature="e#1144#1145#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimulationServer/src/sample/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="72" column="66" lean-forward="true" selection-start-line="72" selection-start-column="66" selection-end-line="72" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimulationServer/src/sample/Pedestrian.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="27" column="5" lean-forward="false" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-          <folding>
-            <element signature="e#491#492#0" expanded="true" />
-            <element signature="e#521#522#0" expanded="true" />
-            <element signature="e#547#548#0" expanded="true" />
-            <element signature="e#581#582#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimulationClient/src/sample/PedestrianClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2640">
-          <caret line="137" column="65" lean-forward="true" selection-start-line="137" selection-start-column="65" selection-end-line="137" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimulationClient/test/sample/PedestrianTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8">
-          <caret line="19" column="42" lean-forward="true" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimulationServer/src/sample/ServerClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="36" column="22" lean-forward="false" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
