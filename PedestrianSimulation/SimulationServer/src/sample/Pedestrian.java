@@ -13,7 +13,7 @@ public class Pedestrian {
     private Double xCenter, yCenter;
 
     public Pedestrian(Integer id, Double x, Double y) {
-        this.r = Main.getRadius();
+        this.r = Main.Settings.getRadius();
         this.id = id;
         this.xCenter = x;
         this.yCenter = y;

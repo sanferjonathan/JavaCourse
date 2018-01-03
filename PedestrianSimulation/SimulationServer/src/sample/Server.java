@@ -21,7 +21,7 @@ public class Server implements Runnable {
     private List<Pedestrian> pedestrianList;
 
     Server(String name) {
-        this.pedestrianList = Main.getPedestrianList();
+        this.pedestrianList = Main.Settings.getPedestrianList();
         threadName = name;
     }
 
@@ -51,8 +51,8 @@ public class Server implements Runnable {
         this.waitingForConnections();
         this.spawnCheck();
         while(true) {
-            System.out.println(""); //needed lol?
-            if(Main.getRun()) {
+            System.out.println("");
+            if(Main.Settings.getRun()) {
                 this.Broadcast();
                 this.waitingForAnswer();
                 this.updateData();
@@ -60,8 +60,7 @@ public class Server implements Runnable {
                 this.collisionCheck();
                 this.removePedestrian();
                 this.onUpdate();
-                Main.setTimeSteps(++this.timeStamp);
-                System.out.println(""); //needed lol?
+                Main.Settings.setTimeSteps(++this.timeStamp);
             }
         }
     }
@@ -118,7 +117,7 @@ public class Server implements Runnable {
             synchronized(client.getPedestrianList()) {
                 if(!client.getPedestrianList().isEmpty()) {
                     for(Pedestrian pedestrian : client.getPedestrianList()) {
-                        Main.getPedestrianList().add(
+                        Main.Settings.getPedestrianList().add(
                                 new Pedestrian(pedestrian.getId(),
                                 pedestrian.getXCenter(), pedestrian.getYCenter()));
                     }
@@ -130,15 +129,27 @@ public class Server implements Runnable {
     public void goalCheck() {
         synchronized(this.pedestrianList) {
             for(Pedestrian pedestrian : this.pedestrianList) {
-                if(pedestrian.getXCenter() > Main.getCanvasX()-50.0
-                        || pedestrian.getXCenter() < 50) {
+                if(pedestrian.getId() == 1
+                        && pedestrian.getXCenter()
+                        > Main.Settings.getCanvasX()-100.0) {
                     pedestrian.kill();
-                    if(Main.getGoalCounter() < (Main.getMaxBluePedestrians()
-                            + Main.getMaxRedPedestrians()))
-                        Main.incGoalCounter();
+                    incrementGoalCounter();
+                }
+                if(pedestrian.getId() == 0
+                        && pedestrian.getXCenter()
+                        < Main.Settings.getCanvasX()-1100.0) {
+                    pedestrian.kill();
+                    incrementGoalCounter();
                 }
             }
         }
+    }
+
+    public void incrementGoalCounter(){
+        if(Main.Settings.getGoalCounter()
+                < (Main.Settings.getMaxBluePedestrians()
+                + Main.Settings.getMaxRedPedestrians()))
+            Main.Settings.incGoalCounter();
     }
 
     public void collisionCheck() {
@@ -146,11 +157,11 @@ public class Server implements Runnable {
             for(int i = 0; i < this.pedestrianList.size(); i++) {
                 for(int j = 0; j < this.pedestrianList.size(); j++) {
                     if(this.pedestrianList.get(j).isAlive() && i != j) {
-                        if (this.pedestrianList.get(i)
-                                .isColliding(this.pedestrianList.get(j))) {
+                        if (this.pedestrianList.get(i).isColliding(
+                                this.pedestrianList.get(j))) {
                             this.pedestrianList.get(i).kill();
                             this.pedestrianList.get(j).kill();
-                            Main.incCollisionCounter();
+                            Main.Settings.incCollisionCounter();
                         }
                     }
                 }
@@ -171,17 +182,17 @@ public class Server implements Runnable {
 
     public void onUpdate() {
         long millis = System.currentTimeMillis();
-        if(millis >= (pastTime + Main.getSpawnRate())) {
+        if(millis >= (pastTime + Main.Settings.getSpawnRate())) {
             this.spawnCheck();
-            pastTime = millis + Main.getSpawnRate();
+            pastTime = millis + Main.Settings.getSpawnRate();
         }
     }
 
     public void spawnCheck() {
-        Double blueRandY = Math.random() * Main.getCanvasY();
-        Double redRandY = Math.random() * Main.getCanvasY();
-        Pedestrian p1 = new Pedestrian(1, 100.0, blueRandY);
-        Pedestrian p2 = new Pedestrian(0, 1100.0, redRandY);
+        Double blueRandY = Math.random() * Main.Settings.getCanvasY();
+        Double redRandY = Math.random() * Main.Settings.getCanvasY();
+        Pedestrian p1 = new Pedestrian(1, 10.0, blueRandY);
+        Pedestrian p2 = new Pedestrian(0, 1190.0, redRandY);
 
         boolean pCollide = false;
         boolean p2Collide = false;
@@ -200,7 +211,7 @@ public class Server implements Runnable {
         }
 
         if(!pCollide) {
-            if(this.spawnedBluePedestrians <= Main.getMaxBluePedestrians()
+            if(this.spawnedBluePedestrians <= Main.Settings.getMaxBluePedestrians()
                     && this.spawnedBluePedestrians <= this.spawnedRedPedestrians) {
                 synchronized(this.pedestrianList) {
                     this.pedestrianList.add(new Pedestrian(p1.getId(), p1.getXCenter(), p1.getYCenter()));
@@ -210,7 +221,7 @@ public class Server implements Runnable {
         }
 
         if(!p2Collide) {
-            if(this.spawnedRedPedestrians <= Main.getMaxRedPedestrians()
+            if(this.spawnedRedPedestrians <= Main.Settings.getMaxRedPedestrians()
                     && this.spawnedRedPedestrians <= this.spawnedBluePedestrians) {
                 synchronized(this.pedestrianList) {
                     this.pedestrianList.add(new Pedestrian(p2.getId(), p2.getXCenter(), p2.getYCenter()));
