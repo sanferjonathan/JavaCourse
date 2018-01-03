@@ -32,11 +32,11 @@ public class Pedestrian {
 
     public void defaultVelocity() {
         if(this.id == 1) {
-            velX = 4.0;
+            velX = 1.0;
             velY = 0.0;
         }
         else if(this.id == 0) {
-            velX = -4.0;
+            velX = -1.0;
             velY = 0.0;
         }
     }
@@ -126,30 +126,30 @@ public class Pedestrian {
     public void calculateMove() {
         if(forward > upp && forward > down) {
             if(this.id == 1) {
-                velX = 4.0;
+                velX = 1.0;
             }
             else{
-                velX = -4.0;
+                velX = -1.0;
             }
             velY = 0.0;
         }
         else if(upp > forward &&  upp > down) {
             if(this.id == 1) {
-                velX = 2.0;
+                velX = 0.5;
             }
             else{
-                velX = -2.0;
+                velX = -0.5;
             }
-            velY = 2.0;
+            velY = 0.5;
         }
         else if(down > forward && down > upp) {
             if(this.id == 1) {
-                velX = 2.0;
+                velX = 0.5;
             }
             else {
-                velX = -2.0;
+                velX = -0.5;
             }
-            velY = -2.0;
+            velY = -0.5;
         }
         upp = 0;
         down = 0;

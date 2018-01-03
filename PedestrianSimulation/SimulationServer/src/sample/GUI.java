@@ -13,7 +13,7 @@ import java.util.List;
 
 public class GUI extends Application {
 
-    private GraphicsContext g;
+    private GraphicsContext graphicsContext;
     private Pane root;
     private Canvas canvas;
     private List<Pedestrian> pedestrians = null;
@@ -34,7 +34,7 @@ public class GUI extends Application {
     private Parent createContent() {
         root = new Pane();
         canvas = new Canvas(Main.getCanvasX(), Main.getCanvasY());
-        g = canvas.getGraphicsContext2D();
+        graphicsContext = canvas.getGraphicsContext2D();
 
         root.getChildren().add(canvas);
         render();
@@ -46,28 +46,50 @@ public class GUI extends Application {
     }
 
     private void render() {
-        g.clearRect(0, 0, Main.getCanvasX(), Main.getCanvasY());
+        graphicsContext.clearRect(0, 0, Main.getCanvasX(), Main.getCanvasY());
 
         synchronized(this.pedestrians) {
-            for(Pedestrian pedestrian : this.pedestrians){
-                pedestrian.drawCenteredCircle(g, pedestrian);
+            for (Pedestrian pedestrian : this.pedestrians) {
+                pedestrian.drawCenteredCircle(graphicsContext, pedestrian);
             }
         }
-        g.strokeText(Main.getCollisionCounter().toString(), Main.getCanvasX()-60.0, 50);
-        g.strokeText("Collision: ", Main.getCanvasX()-110.0, 50);
-        g.strokeText(Main.getGoalCounter() - Main.getCollisionCounter() + " / "
+        //red pedestrians
+        graphicsContext.strokeText("Red tot pedestrians: ", 10, 40);
+        graphicsContext.strokeText(Main.getMaxRedPedestrians().toString(), 120, 40);
+
+        //blue pedestrians
+        graphicsContext.strokeText("Blue tot pedestrians: ", 140, 40);
+        graphicsContext.strokeText(Main.getMaxRedPedestrians().toString(), 250, 40);
+
+        //Pedestrian size
+        graphicsContext.strokeText("Pedestrian size: ", 270, 40);
+        graphicsContext.strokeText(Main.getRadius().toString(), 355, 40);
+
+        //Spawn rate
+        graphicsContext.strokeText("Spawn rate: ", 375, 40);
+        graphicsContext.strokeText(Main.getSpawnRate().toString(), 440, 40);
+
+        //Width
+        graphicsContext.strokeText("Width: ", 465, 40);
+        graphicsContext.strokeText(Main.getCanvasX().toString(), 500, 40);
+
+        //Height
+        graphicsContext.strokeText("Height: ", 530, 40);
+        graphicsContext.strokeText(Main.getCanvasY().toString(), 570, 40);
+
+        //collision counter
+        graphicsContext.strokeText("Collisions: ", 595.0, 40);
+        graphicsContext.strokeText(Main.getCollisionCounter().toString(), 650.0, 40);
+
+        //goal counter
+        graphicsContext.strokeText("Succeeded:", 665.0, 40);
+        graphicsContext.strokeText(Main.getGoalCounter() - Main.getCollisionCounter() + " / "
                 + (Main.getMaxBluePedestrians()
-                + Main.getMaxRedPedestrians()), Main.getCanvasX()-240, 50);
-        g.strokeText("Succeeded:", Main.getCanvasX()-310.0, 50);
+                + Main.getMaxRedPedestrians()), 730.0, 40);
 
-        g.strokeText(Main.getTimeSteps().toString(), Main.getCanvasX()-390, 50);
-        g.strokeText("Time-steps: ", Main.getCanvasX()-460.0, 50);
-
-        g.strokeText("Width: " + Main.getCanvasX().toString() + " Height: "
-                + Main.getCanvasY().toString() + " Spawnrate: " + Main.getSpawnRate().toString()
-                + " Pedestrian size: " + Main.getRadius().toString() + " Red pedestrian limit: "
-                + Main.getMaxRedPedestrians().toString() + " Blue pedestrian limit: "
-                + Main.getMaxBluePedestrians().toString(), Main.getCanvasX()*0.05, 50);
+        //time steps
+        graphicsContext.strokeText("Time-steps: ", 780.0, 40);
+        graphicsContext.strokeText(Main.getTimeSteps().toString(), 850.0, 40);
     }
 
     @Override
@@ -75,7 +97,7 @@ public class GUI extends Application {
         this.pedestrians = Main.getPedestrianList();
 
         primaryStage.setScene(new Scene(createContent()));
-        primaryStage.setTitle("Simulation");
+        primaryStage.setTitle("Pedestrian Simulation!!!");
         initialize();
         primaryStage.getScene().setOnKeyPressed(event -> {
             if(event.getCode() == KeyCode.ENTER) {

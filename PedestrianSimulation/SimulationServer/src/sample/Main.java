@@ -6,18 +6,19 @@ import java.util.List;
 
 public class Main {
 
-    private static List<Pedestrian> pedestrianList = Collections
-            .synchronizedList(new ArrayList<Pedestrian>());
     private static Integer collisionCounter = 0;
     private static Integer goalCounter = 0;
-    private static Integer canvasY = 400;
+    private static Integer canvasY = 300;
     private static Integer canvasX = 1200;
     private static Integer radius = 20;
     private static Integer timeSteps = 0;
-    private static Integer spawnRate = 100;
+    private static Integer spawnRate = 400;
     private static Integer maxBluePedestrians = 50;
     private static Integer maxRedPedestrians = 50;
     private static boolean run = false;
+
+    private static List<Pedestrian> pedestrianList = Collections
+            .synchronizedList(new ArrayList<Pedestrian>());
 
     public static Integer getMaxBluePedestrians() {
         return maxBluePedestrians;

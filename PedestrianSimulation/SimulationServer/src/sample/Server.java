@@ -27,7 +27,7 @@ public class Server implements Runnable {
 
     public void start () {
         if (thread == null) {
-            thread = new Thread (this, threadName);
+            thread = new Thread(this, threadName);
             thread.start();
         }
     }
