@@ -7,18 +7,9 @@ public class LowPortScanner {
 		String host = "localhost";
 		for (int i = 1; i < 1024; i++) {
 			try {
-				Socket mySocket = new Socket(host, 1313);
+				Socket mySocket = new Socket(host, 1337);
 				System.out.println("There is a server!!");
 				mySocket.close();
-					
-				// try to open a socket at host and port
-				// if no exception, then printout that there is a server
-				// and close the socket again
-				// when you have done this, the error messages will disappear
-				
-
-
-
 			} catch (UnknownHostException ex) {
 				System.err.println(ex);
 				break;

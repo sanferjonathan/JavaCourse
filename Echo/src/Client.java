@@ -2,28 +2,37 @@ import java.net.*;
 import java.io.*;
 
 public class Client {
-public static final int PORT = 1114;
+
+	public static final int PORT = 1114;
 	
 	public static void main(String[] args) throws IOException {
-		InetAddress addr;
+
+		InetAddress address;
 		if (args.length >= 1)
-			addr = InetAddress.getByName(args[0]);
+			address = InetAddress.getByName(args[0]);
 		else
-			addr = InetAddress.getByName(null);
-		Socket socket = new Socket(addr, PORT);
+			address = InetAddress.getByName(null);
+
+		//Creating socket
+		Socket socket = new Socket(address, PORT);
 		System.out.println("The new socket: " + socket);
-		
+
+		//Creating reader object to read answer from server
 		BufferedReader in = new BufferedReader(
 				new InputStreamReader(socket.getInputStream()));
-		PrintWriter out = new PrintWriter(
-				new BufferedWriter(
-						new OutputStreamWriter(
-								socket.getOutputStream())), true);
-		//true: PrintWriter is line buffered
+
+		//Creating reader object to read from keyboard
 		BufferedReader kbd_reader = new BufferedReader(
 				new InputStreamReader(System.in));
+
+		//Creating writer object
+		PrintWriter out = new PrintWriter(
+				new BufferedWriter(new OutputStreamWriter(
+						socket.getOutputStream())), true);
 		String buf;
-		
+
+		//Read from keyboard and send to server, then print answer from server.
+		//Close connection if null or "quit" is read.
 		while (true) {
 			buf = kbd_reader.readLine();
 			System.out.println("From keyboard: " + buf);
